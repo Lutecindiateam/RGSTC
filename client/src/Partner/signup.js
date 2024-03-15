@@ -33,14 +33,14 @@ const PartnerSignUp = (props) => {
   const [pincode, setPincode] = useState("");
 
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const [role, setRole] = React.useState("");
+  const [gender, setGender] = React.useState("");
   const [erroremail, seterroremail] = useState("");
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setRole(event.target.value);
+    setGender(event.target.value);
   };
 
   const handlePhoneNumberChange = (e) => {
@@ -68,11 +68,11 @@ const PartnerSignUp = (props) => {
       data: {
         name,
         phone,
-        address,
-        pincode,
+        // address,
+        // pincode,
         email,
         password,
-        role
+        gender
       },
     });
   };
@@ -82,9 +82,9 @@ const PartnerSignUp = (props) => {
     if (registerdata !== undefined) {
       if (registerdata?.data?.status === "success") {
         props.candidate.registerData = undefined;
-        Swal.fire("Good job!", "Registration successfully.", "success");
-   
-          navigate("/partnerlogin");
+        Swal.fire("Success!", "Registration successfully.", "success");
+
+        navigate("/partnerlogin");
 
       } else {
         Swal.fire("Sorry!", "Email is already used.", "error");
@@ -98,9 +98,9 @@ const PartnerSignUp = (props) => {
     <div className="background">
       <Container component="main" maxWidth="xs">
         <div>
-          {/* <Typography variant="h5">Registration</Typography> */}
+          <Typography variant="h5" style={{ color: "white", display: "flex", justifyContent: "center", paddingTop: "10%" }}>Registration</Typography>
           <form onSubmit={handleSubmit}>
-             <TextField
+            <TextField
               fullWidth
               label=" Full Name"
               type="text"
@@ -121,7 +121,33 @@ const PartnerSignUp = (props) => {
                 },
               }}
             />
-{/*
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{ color: "white" }}
+                  required
+                >
+                 Gender
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={gender}
+                  label=" Select Gender "
+                  onChange={handleChange}
+                  style={{
+                    border: "1px solid white",
+                    borderRadius: "10px",
+                    color: "white",
+                  }}
+                >
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            
             <TextField
               fullWidth
               label=" Phone Number"
@@ -152,7 +178,7 @@ const PartnerSignUp = (props) => {
               </Typography>
             )}
 
-            <TextField
+            {/*      <TextField
               fullWidth
               label=" Address"
               type="text"
@@ -173,28 +199,9 @@ const PartnerSignUp = (props) => {
                 },
               }}
             />
+*/}
+           
 
-            <TextField
-              fullWidth
-              label="Pin Code"
-              type="text"
-              required
-              placeholder="Pin Code"
-              onChange={(e) => setPincode(e.target.value)}
-              margin="normal"
-              InputProps={{
-                style: {
-                  border: "1px solid white", // White border
-                  borderRadius: "10px", // Border radius
-                  color: "white", // Text color
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  color: "white", // Label color
-                },
-              }}
-            /> */}
 
             <TextField
               fullWidth
@@ -243,32 +250,7 @@ const PartnerSignUp = (props) => {
             <br />
             <br />
 
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel
-                  id="demo-simple-select-label"
-                  style={{ color: "white" }}
-                  required
-                >
-                  Are You Employee?
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={role}
-                  label="Are You Employee "
-                  onChange={handleChange}
-                  style={{
-                    border: "1px solid white",
-                    borderRadius: "10px",
-                    color: "white",
-                  }}
-                >
-                  <MenuItem value="agent">Yes</MenuItem>
-                  {/* <MenuItem value="proxy">No</MenuItem> */}
-                </Select>
-              </FormControl>
-            </Box>
+            
 
             <br />
 

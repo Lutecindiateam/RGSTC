@@ -9,22 +9,22 @@ const applySchema = new mongoose.Schema(
       trim: true,
     },
 
-    phone: {
-      type: Number,
-      trim: true,
-    },
-    address: {
-      type: String,
+    // phone: {
+    //   type: Number,
+    //   trim: true,
+    // },
+    // address: {
+    //   type: String,
 
-      required: true,
-      trim: true,
-    },
-    pincode: {
-      type: Number,
+    //   required: true,
+    //   trim: true,
+    // },
+    // pincode: {
+    //   type: Number,
 
-      required: true,
-      trim: true,
-    },
+    //   required: true,
+    //   trim: true,
+    // },
     email: {
       type: String,
 
@@ -38,12 +38,12 @@ const applySchema = new mongoose.Schema(
       trim: true,
     },
 
-    active: {
-      type: String,
-      default: "pending",
-      // required: true,
-      trim: true,
-    },
+    // active: {
+    //   type: String,
+    //   default: "pending",
+    //   // required: true,
+    //   trim: true,
+    // },
     role: {
       type: String,
       required: true,
@@ -51,6 +51,7 @@ const applySchema = new mongoose.Schema(
     },
     value: {
       type: Boolean,
+      default: true
     },
   },
 

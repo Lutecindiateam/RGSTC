@@ -6,7 +6,8 @@ const User = require("../../models/user");
 const Admin = require("../../models/admin");
 const agent = require("../../models/partner/agent");
 const upload = require("../../models/partner/upload");
-
+const partner = require("../../models/partner/partner");
+const partnerAdmin = require("../../models/partner/admin")
 // Make sure to replace this with the actual path to your Partner model
 exports.getPartnerProfile = async (req, res) => {
   try {
@@ -70,7 +71,7 @@ exports.admin_action = async (req, res) => {
 
 exports.create_partner_account = async (req, res) => {
   try {
-    const existingEmailPartner = await agent
+    const existingEmailPartner = await partner
       .findOne({
         email: req.body.email,
       })
@@ -81,7 +82,8 @@ exports.create_partner_account = async (req, res) => {
 
     const {
       name,
-      // phone,
+      phone,
+      gender,
       // address,
       // pincode,
       email,
@@ -93,14 +95,15 @@ exports.create_partner_account = async (req, res) => {
 
     // console.log(password)
 
-    const _partner = new agent({
+    const _partner = new partner({
       name,
-      // phone,
+      phone,
+      gender,
       // address,
       // pincode,
       email,
       password,
-      // role,
+      role: "clerk",
 
       // active,
     });
@@ -287,9 +290,9 @@ exports.getAgentStudent = async (req, res) => {
   }
 };
 
-exports.getAgent = async (req, res) => {
+exports.getAdminUsers = async (req, res) => {
   try {
-    const response = await agent.find();
+    const response = await partnerAdmin.find({ role: { $ne: "superadmin" } });
     if (response) {
       return res.status(200).json({
         data: { response },
@@ -303,16 +306,16 @@ exports.getAgent = async (req, res) => {
 
 exports.editResetPass = async (req, res) => {
   try {
-    const{email, name , role, password} = req.body;
+    const { email, name, role, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
     const response = await agent.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-          email:email,
-          name:name,
-          role:role,
-          password:hash
+          email: email,
+          name: name,
+          role: role,
+          password: hash
         },
       },
       { new: true }

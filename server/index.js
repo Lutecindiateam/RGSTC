@@ -34,7 +34,10 @@ const authRoutes = require("./src/routes/user");
 const MONGO_URL = process.env.MONGO_URL;
 
 mongoose
-  .connect(MONGO_URL)
+  .connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(() => {
     console.log("Database connected");
   })

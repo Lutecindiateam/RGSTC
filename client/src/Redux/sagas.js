@@ -319,7 +319,7 @@ import {
   getCandidates,
   getCandidateDetails,
   // getSubscribe,
-  addCareer,
+  getScheme,
   getCareer,
   getAllCareer,
   editCareer,
@@ -660,7 +660,7 @@ export function* allCareerAdmin(action) {
 }
 export function* addCareerAdmin(action) {
   try {
-    const response = yield call(addCareer, action.obj);
+    const response = yield call(getScheme, action.obj);
     yield put(receiveAdminAddCareer(response));
   } catch (e) {
     console.log(e.message);

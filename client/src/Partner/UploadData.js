@@ -52,6 +52,18 @@ const UploadData = (props) => {
 
   const team = ["Assistance for S&T Applications", "Assistance for S&T Applications through University System", "Setting up Science and Innovation Activity Centres", "RGSTC MSME Internship Program", "Assistance to Collaborative Projects between Institutions and Industries for Technology Development / Adoption(CPIITA)"];
 
+  const industry = [
+    "Information Technology",
+    "Healthcare",
+    "Finance",
+    "Manufacturing",
+    "Retail",
+    "Automotive",
+    "Energy",
+    "Construction",
+    "Telecommunications",
+    "Aerospace"
+  ]
   const university = [
     "University of Mumbai",
     "Savitribai Phule Pune University",
@@ -189,7 +201,6 @@ const UploadData = (props) => {
     // console.log(value);  
     setCourses(value);
   }
-
   const onFinish = async (values) => {
     const { source: sourceName } = values;
     // Get the user ID corresponding to the selected name (assuming you have a mapping)
@@ -198,31 +209,31 @@ const UploadData = (props) => {
 
     try {
       let formData = new FormData();
-      formData.append("candidateName", values?.candidateName?.toUpperCase());
-      formData.append("project_name", values.project_name)
+      formData.append("applicant", values?.applicant?.toUpperCase());
+      formData.append("project_name", values?.project_name?.toUpperCase());
       formData.append("mobile", values.mobile);
-      formData.append("p_mobile", values.p_mobile);
       formData.append("gender", values.gender);
-      formData.append("course", values.course);
-      // {
-      // !courses &&
-      formData.append("branch_obj", values.branch_obj);
-      // }
+      formData.append("scheme", values.scheme);
+      formData.append("industry", values.industry);
+      formData.append("project_brief", values.project_brief);
       formData.append("date_docSubmision", values.date_docSubmision);
-      formData.append("lastExam_passingYear", values.lastExam_passingYear.$y);
-      formData.append("team", values.team);
-      formData.append("source_name", values.source);
-      formData.append("family_mobile", values.family_mobile);
-      formData.append("category", values.category);
-      formData.append("p_id", user.id);
-      formData.append("source_id", sourceId);
-
+      formData.append("lastExam_passingYear", values.lastExam_passingYear);
+      formData.append("estimate_cost", values.estimate_cost);
+      formData.append("applicant_id", user.id)
+      // formData.append("course", values.course);
+      // formData.append("branch_obj", values.branch_obj);
+      // formData.append("team", values.team);
+      // formData.append("source_name", values.source);
+      // formData.append("family_mobile", values.family_mobile);
+      // formData.append("category", values.category);
+      // formData.append("p_id", user.id);
+      // formData.append("source_id", sourceId);
+      // formData.append("p_mobile", values.p_mobile);
       // formData.append("entrance_exam", values.entrance_exam);
       // formData.append("dtenumber", values.dtenumber);
       // formData.append("capround", values.capround);
       // formData.append("erpid", values.erpid);
       // formData.append("stu_rec_fees", values.stu_rec_fees);
-
       // if (showOtherInput) {
       //   formData.append("otherUniversity", values.otherUniversity);
       // } else {
@@ -428,7 +439,7 @@ const UploadData = (props) => {
           >
             <Form.Item
               style={{ marginBottom: "15px" }}
-              name="project_title"
+              name="project_name"
               label="Project Name"
               rules={[
                 {
@@ -441,7 +452,7 @@ const UploadData = (props) => {
             </Form.Item>
             <Form.Item
               style={{ marginBottom: "15px" }}
-              name="team"
+              name="scheme"
               label="Select Scheme"
               rules={[
                 {
@@ -475,7 +486,7 @@ const UploadData = (props) => {
             </Form.Item>
             <Form.Item
               style={{ marginBottom: "15px" }}
-              name="candidateName"
+              name="applicant"
               label="Applicant Name"
               rules={[
                 {
@@ -795,7 +806,7 @@ const UploadData = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="date_docSubmision"
-              label="Date of Document Submission"
+              label="Duration Start Date"
               rules={[
                 {
                   required: true,
@@ -807,28 +818,29 @@ const UploadData = (props) => {
             </Form.Item>
             <Form.Item
               style={{ marginBottom: "15px" }}
-              label="Last Exam Passing Year"
+              label="Duration End Date"
               name="lastExam_passingYear"
               rules={[
                 {
                   required: true,
-                  message: "Please input Year!",
+                  message: "Please input date!",
                 },
               ]}
             >
-              <DatePicker picker="year" placeholder="Select Last Exam Passing Year" style={{ width: "100%" }} />
+              <Input type="date" />
+              {/* <DatePicker picker="year" placeholder="Select Last Exam Passing Year" style={{ width: "100%" }} /> */}
             </Form.Item>
 
             <Form.Item
               style={{ marginBottom: "15px" }}
-              name="source"
+              name="industry"
               label="Select Industry"
-            // rules={[
-            //   {
-            //     required: true,
-            //     message: "Please select Source!",
-            //   },
-            // ]}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Industry!",
+                },
+              ]}
             >
               <Select
                 name="Source"
@@ -845,13 +857,45 @@ const UploadData = (props) => {
                     .localeCompare(optionB.children.toLowerCase())
                 }
               >
-                {source &&
-                  source.map((source) => (
-                    <Select.Option key={source.name} value={source.name}>
-                      {source.name}
+                {industry &&
+                  industry.map((source) => (
+                    <Select.Option key={source} value={source}>
+                      {source}
                     </Select.Option>
                   ))}
               </Select>
+            </Form.Item>
+
+            <Form.Item
+              style={{ marginBottom: "15px" }}
+              name="project_brief"
+              label="Explain Project in Brief"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Project Name!",
+                },
+              ]}
+            >
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="Enter about project"
+              ></textarea>
+              {/* <Input placeholder="Enter Project Name" style={{ width: "100%", height: "100px" }} /> */}
+            </Form.Item>
+            <Form.Item
+              style={{ marginBottom: "15px" }}
+              label="Estimated Cost"
+              name="estimate_cost"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input estimated cost!",
+                }
+              ]}
+            >
+              <Input type="number" placeholder="Enter Estimated Cost" />
             </Form.Item>
             <Form.Item
               style={{ marginBottom: "15px" }}

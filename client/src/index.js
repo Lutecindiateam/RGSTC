@@ -11,6 +11,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import mainSaga from "./Redux/sagas";
 import axios from "axios";
 import { Amplify, Auth } from 'aws-amplify';
+
 import awsExports from './aws-exports'
 Amplify.configure(awsExports)
 

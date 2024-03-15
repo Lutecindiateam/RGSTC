@@ -292,7 +292,7 @@ const Dashboard = ({ information, ...props }) => {
                     <div className="media d-flex">
                       <div className="media-body text-left">
                         <h3 className="">{list?.length ? list?.length + rejList.length : 0}</h3>
-                        <span className="">Total Applicant Entries</span>
+                        <span className="">Total Project Entries</span>
                       </div>
                       <div className="align-self-center">
                         <i
@@ -325,7 +325,7 @@ const Dashboard = ({ information, ...props }) => {
                             ).length
                             : 0}
                         </h3>
-                        <span className="">Complete Applicants</span>
+                        <span className="">Approved Project</span>
                       </div>
                       <div className="align-self-center">
                         <i
@@ -364,7 +364,7 @@ const Dashboard = ({ information, ...props }) => {
                                 : 0)
                           }
                         </h3>
-                        <span className="">Rejected Applicants</span>
+                        <span className="">Rejected Project</span>
                       </div>
                       <div className="align-self-center">
                         <i
@@ -408,7 +408,7 @@ const Dashboard = ({ information, ...props }) => {
                 </div>
               </div>
             </div>
-            {user.role === "editor" || user.role === "admin" || user.role === "superadmin" ?
+            {/* {user.role === "editor" || user.role === "admin" || user.role === "superadmin" ?
               <>
                 <div className="col-xl-3 col-sm-6 col-12 feature-card">
                   <div className="card dashboard-card">
@@ -529,22 +529,22 @@ const Dashboard = ({ information, ...props }) => {
                 </div>
               </>
               : null
-            }
+            } */}
 
           </div>
           {
             // console.log(user.role === "editor" || user.role === "admin" || user.role === "superadmin") &&
-            user.role === "editor" || user.role === "admin" || user.role === "superadmin" ?
+              user.role === "superadmin" ?
               <Bar />
               : null
           }
-          {
+          {/* {
             user.role === "agent" ? (
               <AgentGraph
                 id={user.id}
               />
             ) : null
-          }
+          } */}
         </div>
       </Fragment>
     </Layout>

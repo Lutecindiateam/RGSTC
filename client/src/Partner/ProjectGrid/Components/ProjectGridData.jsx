@@ -1,8 +1,8 @@
-import avatar1 from '../../../../src/image/Wainganga.jpg';
-import avatar2 from '../../../../src/image/Wainganga.jpg';
-import avatar3 from '../../../../src/image/Wainganga.jpg';
-import avatar4 from '../../../../src/image/Wainganga.jpg';
-import avatar5 from '../../../../src/image/Wainganga.jpg';
+import avatar1 from '../../../../src/image/demo.jpg';
+import avatar2 from '../../../../src/image/demo.jpg';
+import avatar3 from '../../../../src/image/demo.jpg';
+import avatar4 from '../../../../src/image/demo.jpg';
+import avatar5 from '../../../../src/image/demo.jpg';
 
 export const GridData = [
     {

@@ -79,7 +79,7 @@ const PartnerLogin = (props) => {
             variant="h5"
             style={{ textAlign: "center", fontSize: "30px", color: "white" }}
           >
-            Login
+           Applicant Login
           </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
@@ -173,9 +173,9 @@ const PartnerLogin = (props) => {
                 align="right"
                 style={{ color: "white", fontSize: "20px" }}
               >
-                For Staff{" "}
-                <a href="/login" style={{ color: "white" }}>
-                  Login
+                New Applicant{" "}
+                <a href="/signup" style={{ color: "white" }}>
+                  Signup
                 </a>
               </Typography>
 

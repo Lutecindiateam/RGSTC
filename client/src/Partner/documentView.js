@@ -110,7 +110,7 @@ const DocView = (props) => {
     let resumeData = props.candidate.resumeData;
     if (resumeData !== undefined) {
       if (resumeData?.data?.status == "success") {
-        Swal.fire("Complete!", "Admission Completed.", "success");
+        Swal.fire("Complete!", "Project Submited.", "success");
         navigate("/upload")
         // setLoader(false);
         // form.resetFields();
@@ -440,7 +440,7 @@ const DocView = (props) => {
       setDeplomaFile(null);
       setAllotmentFile(null);
       // setLoader(true);
-      
+
     } catch (error) {
       console.log(error.message);
       toast.error("error at creating");
@@ -539,7 +539,7 @@ const DocView = (props) => {
           <Typography
             style={{ fontSize: "18px", color: "green", marginLeft: "17%" }}
           >
-            * {uploadedCount}/17 Uploaded
+            * {uploadedCount}/7 Uploaded
           </Typography>
           <br />
           <Form
@@ -562,7 +562,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="adhar"
-              label="Aadhar Card"
+              label="Document 1"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -609,7 +609,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="photo"
-              label="Photo"
+              label="Document 2"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -656,7 +656,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="sign"
-              label="Signature"
+              label="Document 3"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -701,7 +701,7 @@ const DocView = (props) => {
                 )}
               </div>
             </Form.Item>
-            <Form.Item style={{ marginBottom: "15px" }} name="tc" label="Leaving Certificate">
+            <Form.Item style={{ marginBottom: "15px" }} name="tc" label="Document 4">
               <div style={{ display: "flex" }}>
                 <Input
                   type="file"
@@ -747,7 +747,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="10th"
-              label="10th marksheet"
+              label="Document 5"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -795,7 +795,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="12th"
-              label="12th marksheet"
+              label="Document 6"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -843,7 +843,7 @@ const DocView = (props) => {
             <Form.Item
               style={{ marginBottom: "15px" }}
               name="caste"
-              label="Caste Certificate"
+              label="Document 7"
             >
               <div style={{ display: "flex" }}>
                 <Input
@@ -888,7 +888,7 @@ const DocView = (props) => {
                 )}
               </div>
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
               style={{ marginBottom: "15px" }}
               name="non"
               label="Non-Creamy Layer"
@@ -1365,16 +1365,6 @@ const DocView = (props) => {
                   />
                 )}
               </div>
-            </Form.Item>
-            {/* <Form.Item
-              style={{ marginBottom: "15px" }}
-              name="required_doc"
-              label="Are the required documents submitted?"
-            >
-              <Radio.Group >
-                <Radio value={true}>Yes</Radio>
-                <Radio value={false}>No</Radio>
-              </Radio.Group>
             </Form.Item> */}
           </Form>
           {user.role === "clerk" ? (

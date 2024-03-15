@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const applySchema = new mongoose.Schema(
   {
-    candidateName: {
+    applicant: {
       type: String,
       required: true,
       trim: true,
@@ -11,6 +11,23 @@ const applySchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    estimate_cost: {
+      type: Number
+    },
+    project_brief: {
+      type: String,
+      trim: true
+    },
+    scheme: {
+      type: String
+    },
+    project_name: {
+      type: String,
+      trim: true
+    },
+    industry: {
+      type: String
     },
     parent_mobile: {
       type: String,
@@ -30,7 +47,7 @@ const applySchema = new mongoose.Schema(
     course: {
       type: String,
 
-      required: true,
+      // required: true,
       trim: true,
     },
     branch: {
@@ -109,7 +126,7 @@ const applySchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
+      // required: true,
     },
     doc_cap_lett: {
       type: String,
@@ -198,6 +215,9 @@ const applySchema = new mongoose.Schema(
     source_id: {
       type: String,
     },
+    applicant_id: {
+      type: String
+    },
     rejection: {
       type: String,
       default: null,
@@ -216,6 +236,10 @@ const applySchema = new mongoose.Schema(
     stage: {
       type: String,
       default: null
+    },
+    referee_remark:{
+      type: String,
+      default: "Not Entered"
     }
     // verifycandidate: {
     //   type: Boolean,

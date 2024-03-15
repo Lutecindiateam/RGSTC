@@ -39,6 +39,7 @@ const {
   getAgentStudent,
   getAgent,
   editResetPass,
+  getAdminUsers,
 } = require("../controller/partner/partner");
 const {
   getShopsData,
@@ -77,6 +78,7 @@ const {
 } = require("../controller/partner/reject");
 const { AddAmount, getBranchData } = require("../controller/partner/amount");
 const { sendOtp, verifyOtp, resendCandidateOtp, resendParentOtp } = require("../controller/partner/otp");
+const { saveScheme, getScheme, getRefereeCommittee, addAdminUsers, deleteUser } = require("../controller/partner/scheme");
 
 const router = express.Router();
 
@@ -135,7 +137,7 @@ router.post("/partner/admin/login", partnerAdminLogin);
 router.get("/adminaction", admin_action);
 router.post(
   "/shopData",
-  requireSignin,
+  // requireSignin,
   upload.array("allDocument"),
   uploadShopData
 );
@@ -175,7 +177,7 @@ router.post("/agent/login", authenticate_agent);
 router.get("/agent/profile/:id", agentProfile);
 router.get("/agent/getstudent/:id", getAgentStudent);
 router.get("/admin/reject", getRejectedApp);
-router.get("/pass/reset", getAgent);
+router.get("/pass/reset", getAdminUsers);
 router.patch("/reset/:id", upload.none(), editResetPass);
 router.post("/add/amount", AddAmount);
 router.get("/branch/data/", getBranchData);
@@ -189,7 +191,13 @@ router.get("/stage/graph/:id", getStagegraph);
 router.get("/amoun/graph/:id", getTotalPaidAmount);
 router.get("/dashboard/data", getDashboardData)
 router.get("/admin/branch/data", getBranchWiseData);
+router.post("/admin/addUser", upload.none(), addAdminUsers);
+router.delete("/admin/delete/:id", deleteUser);
 
+  //scheme management
+  router.post("/save/scheme", saveScheme);
+router.get("/get/scheme", getScheme);
+router.get("/get/referee/committee", getRefereeCommittee)
 router.post("/send/otp/", sendOtp);
 router.post("/verify/otp/", verifyOtp);
 router.post("/resend", resendCandidateOtp);

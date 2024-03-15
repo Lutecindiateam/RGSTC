@@ -15,8 +15,9 @@ import {
   requestGetInterview,
   requestAdminEditPeriod,
   requestCandidateProfile,
-  requestGetJobAlert,
-  requestCandidateLogo
+  requestAdminSize,
+  requestCandidateLogo,
+  requestAdminDeleteCareer
 } from "../Redux/actions";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -30,19 +31,21 @@ import Modal from "@mui/material/Modal";
 import AgentGraph from "./AgentGraph";
 // import { Input } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import UserModel from "./handleModel"
 
 const style = {
   position: "absolute",
-  top: "50%",
+  top: "35%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 500,
   maxHeight: "90vh", // Set maximum height to 90% of the viewport height
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: 4
 };
 
 const DetailsModal = ({
@@ -55,6 +58,7 @@ const DetailsModal = ({
   setData,
   user,
   onSubmit,
+  submitDelete
 }) => {
   useEffect(() => {
     if (id) {
@@ -71,6 +75,8 @@ const DetailsModal = ({
     // Close the modal if needed
     handleClose();
   };
+
+
   return (
     <Modal
       open={open}
@@ -93,7 +99,7 @@ const DetailsModal = ({
             onChange={onChangeData}
           />
         </div>
-
+        <br />
         <div>
           <label htmlFor="role">Role:</label>
           <Input
@@ -105,6 +111,7 @@ const DetailsModal = ({
           // onChange={onChangeData}
           />
         </div>
+        <br />
         <div>
           <label htmlFor="email">Email:</label>
           <Input
@@ -116,6 +123,7 @@ const DetailsModal = ({
             onChange={onChangeData}
           />
         </div>
+        <br />
         <div>
           <label htmlFor="password">Set New Password:</label>
           <Input
@@ -127,9 +135,13 @@ const DetailsModal = ({
           />
         </div>
         <br />
-        <div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" onClick={submitProductForm}>
             Submit
+          </Button>
+          &nbsp;
+          <Button variant="contained" style={{ backgroundColor: "red"}} onClick={submitDelete}>
+            Delete
           </Button>
         </div>
       </Box>
@@ -151,6 +163,7 @@ const Reset = (props) => {
   const [editorStatus, setEditorStatus] = useState(null);
   const [spinning, setSpinning] = useState(false);
   const navigate = useNavigate();
+  const [openUser, setOpenUser] = useState(false)
 
   const handleOpen = (id) => {
     setId(id);
@@ -160,6 +173,14 @@ const Reset = (props) => {
     setId(null);
     setOpen(false);
   };
+
+  const handleUserOpen = (id) => {
+    setOpenUser(true);
+  }
+
+  const handleUserClose = () => {
+    setOpenUser(false);
+  }
 
   function onChangeData(e) {
     if (e.target.type === "radio") {
@@ -180,6 +201,13 @@ const Reset = (props) => {
   //   setGraphId(id);
   //   // navigate(`/handle/${id}`)
   // }
+  const submitDelete = () => {
+    setSpinning(true);
+    props.requestAdminDeleteCareer({
+      id: id
+    })
+    handleClose();
+  }
 
   const onSubmit = (values) => {
     // Handle form submission here
@@ -188,8 +216,8 @@ const Reset = (props) => {
     form.append("name", values.name);
     form.append("password", values.password);
     form.append("role", values.role)
-    // console.log("Form submitted with data:", formData);
-    // You can dispatch an action or perform any other logic
+
+
     props.requestCandidateLogo({
       data: form,
       id: values._id,
@@ -198,16 +226,51 @@ const Reset = (props) => {
     //   console.log(`${key}: ${value}`);
     // }
   };
+
+  useEffect(() => {
+    let deleteCareerData = props.data.deleteCareerData;
+    if (deleteCareerData !== undefined) {
+      if (deleteCareerData?.data?.status === "success") {
+        Swal.fire("Success!", "User successfully deleted.", "success");
+        props.data.deleteCareerData = undefined;
+        setSpinning(false);
+      } else {
+        if (deleteCareerData?.data?.message) {
+          Swal.fire("Sorry!", `${deleteCareerData?.data?.message}`, "error");
+          props.data.deleteCareerData = undefined;
+          setSpinning(false)
+        }
+      }
+    }
+  }, [props.data.deleteCareerData]);
+
+  useEffect(() => {
+    let addFunctionalData = props.data.addFunctionalData;
+    if (addFunctionalData !== undefined) {
+      if (addFunctionalData?.data?.status === "success") {
+        Swal.fire("Success!", "User successfully added.", "success");
+        props.data.addFunctionalData = undefined;
+        setSpinning(false);
+      } else {
+        if (addFunctionalData?.data?.message) {
+          Swal.fire("Sorry!", `${addFunctionalData?.data?.message}`, "error");
+          props.data.addFunctionalData = undefined;
+          setSpinning(false)
+        }
+      }
+    }
+  }, [props.data.addFunctionalData]);
+
   useEffect(() => {
     let loginData = props.data.loginData;
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
         if (
-          loginData?.data?.data.role === "admin" ||
-          loginData?.data?.data.role === "editor" ||
+          // loginData?.data?.data.role === "admin" ||
+          // loginData?.data?.data.role === "editor" ||
           loginData?.data?.data.role === "superadmin"
         ) {
-          props.requestGetJobAlert({
+          props.requestAdminSize({
             // id: loginData.data.data.id,
             // role: loginData.data.data.role,
             token: loginData.data.data.token,
@@ -215,31 +278,31 @@ const Reset = (props) => {
         }
       }
     }
-  }, [props?.data?.loginData, props.candidate.candidatePictureData]);
+  }, [props?.data?.loginData, props.candidate.candidatePictureData, props.data.addFunctionalData, props.data.deleteCareerData]);
+
+  // useEffect(() => {
+  //   let loginData = props.candidate.loginData;
+  //   if (loginData !== undefined) {
+  //     if (loginData?.data?.status == "success") {
+  //       if (loginData?.data?.data.role === "reset") {
+  //         props.requestGetJobAlert({
+  //           // id: loginData.data.data.id,
+  //           // role: loginData.data.data.role,
+  //           token: loginData.data.data.token,
+  //         });
+  //       }
+  //     }
+  //   }
+  // }, [props.candidate.loginData, props.candidate.candidatePictureData]);
 
   useEffect(() => {
-    let loginData = props.candidate.loginData;
-    if (loginData !== undefined) {
-      if (loginData?.data?.status == "success") {
-        if (loginData?.data?.data.role === "reset") {
-          props.requestGetJobAlert({
-            // id: loginData.data.data.id,
-            // role: loginData.data.data.role,
-            token: loginData.data.data.token,
-          });
-        }
+    let sizeData = props.data.sizeData;
+    if (sizeData !== undefined) {
+      if (sizeData?.data?.status === "success") {
+        setList(sizeData.data.data.response);
       }
     }
-  }, [props.candidate.loginData, props.candidate.candidatePictureData]);
-
-  useEffect(() => {
-    let jobAlertData = props.candidate.jobAlertData;
-    if (jobAlertData !== undefined) {
-      if (jobAlertData?.data?.status === "success") {
-        setList(jobAlertData.data.data.response);
-      }
-    }
-  }, [props.candidate.jobAlertData]);
+  }, [props.data.sizeData]);
 
   useEffect(() => {
     let loginData = props.candidate.loginData;
@@ -265,16 +328,6 @@ const Reset = (props) => {
         </Button>
       ),
     },
-    // {
-    //   field: "graph",
-    //   headerName: "View Graph",
-    //   flex: 1,
-    //   renderCell: (params) => (
-    //     <Button onClick={() => handleGraph(params.row.more.id)}>
-    //       View Graph
-    //     </Button>
-    //   ),
-    // },
   ];
 
   const rows = list.map((item, index) => ({
@@ -291,6 +344,15 @@ const Reset = (props) => {
 
   return (
     <Layout>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography id="user" variant="h6" component="h2">
+          Manage User
+        </Typography>
+        <Button variant="contained" onClick={handleUserOpen}>
+          Add User
+        </Button>
+      </div>
+      <br />
       <div style={{ height: "100%", width: "100%" }}>
         <div style={{ marginBottom: "20px" }}> {/* Add margin bottom to create space */}
           <DataGrid
@@ -320,7 +382,17 @@ const Reset = (props) => {
         setData={setData}
         user={user}
         onSubmit={onSubmit}
+        submitDelete={submitDelete}
+
       />{" "}
+      <UserModel
+        openUser={openUser}
+        handleUserClose={handleUserClose}
+        spinning={spinning}
+        setSpinning={setSpinning}
+      />
+      <Spin spinning={spinning} fullscreen />
+
     </Layout>
   );
 };
@@ -344,8 +416,9 @@ const mapDispatchToProps = (dispatch) =>
       requestGetInterview,
       requestAdminEditPeriod,
       requestCandidateProfile,
-      requestGetJobAlert,
-      requestCandidateLogo
+      requestAdminSize,
+      requestCandidateLogo,
+      requestAdminDeleteCareer
     },
     dispatch
   );

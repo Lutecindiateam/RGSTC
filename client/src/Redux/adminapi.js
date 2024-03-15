@@ -104,7 +104,7 @@ export const addDegree = (obj) => {
 };
 export const editDegree = (obj) => {
   return axios
-    .patch("/admin/editEditorStatus/" + obj.id, obj.data)
+    .patch("/admin/editEditorStatus/" + obj.id, obj)
     .then((response) => {
       return response;
     })
@@ -330,6 +330,54 @@ export const getJobDetails = (obj) => {
     });
 };
 
+export const getScheme = (obj) => {
+  return axios
+    .get("/get/scheme")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const getSize = (obj) => {
+  return axios
+    .get("/pass/reset")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const addFunctional = (obj) => {
+  return axios
+    .post("/admin/addUser", obj.data)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const deleteCareer = (obj) => {
+  return axios
+    .delete("/admin/delete/" + obj.id)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
 //*************END*********//
 
 export const adminforgot1 = (obj) => {
@@ -514,17 +562,7 @@ export const getAllCareer = (obj) => {
 };
 
 
-export const addCareer = (obj) => {
-  return axios
-    .post("/admin/Addcareer_levels", obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 // export const editCareer = (obj) => {
 //   return axios
@@ -538,17 +576,6 @@ export const addCareer = (obj) => {
 //     });
 // };
 
-export const deleteCareer = (obj) => {
-  return axios
-    .delete("/admin/Career_levels/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
 export const getAllSize = (obj) => {
   return axios
@@ -564,17 +591,7 @@ export const getAllSize = (obj) => {
     });
 };
 
-export const getSize = (obj) => {
-  return axios
-    .get("/admin/editCompanySize/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const addSize = (obj) => {
   return axios
@@ -673,17 +690,7 @@ export const getFunctional = (obj) => {
     });
 };
 
-export const addFunctional = (obj) => {
-  return axios
-    .post("/admin/addFunctionalArea", obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 
 

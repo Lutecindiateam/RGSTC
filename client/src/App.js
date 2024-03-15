@@ -31,6 +31,10 @@ import Dashboard from "./Partner/dashboard"
 import Bar from "./Partner/bar";
 import ProjectGrid from "./Partner/ProjectGrid/ProjectGrid";
 import ProjectList from "./Partner/ProjectList/ProjectList";
+import Calendar from "./Partner/MyCalendar/Calendar";
+import FileManager from "./Partner/FileManager/FileManager";
+import Chat from "./Partner/Chat/Chat";
+import SchemeFlow from "./Partner/SchemeFlow";
 
 
 const router = createBrowserRouter([
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
     element: <PartnerLogin />,
   },
   {
-    path: "/partnersignup",
+    path: "/signup",
     element: <PartnerSignUp />,
   },
   {
@@ -143,7 +147,24 @@ const router = createBrowserRouter([
   {
     path: '/project_list',
     element: <ProjectList />
-  }
+  },
+  {
+    path: '/calendar',
+    element: <Calendar />
+  },
+  {
+    path: "/file",
+    element: <FileManager />
+  },
+  {
+    path: "/chat",
+    element: <Chat />
+  },
+  {
+    path: "/flow",
+    element: <SchemeFlow />
+  },
+  
   // {
   //   path: "/graph/:id",
   //   element: <

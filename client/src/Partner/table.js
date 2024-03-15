@@ -199,25 +199,25 @@ const DetailsModal = ({
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Student Admission Details
+          Project Details
         </Typography>
         <div>
-          <label htmlFor="candidateName">Name:</label>
+          <label htmlFor="Project">Project Name:</label>
           <Input
-            id="candidateName"
-            name="candidateName"
-            value={data.candidateName}
-            placeholder={`Product Name`}
+            id="projectName"
+            name="projectName"
+            value={data.project_name}
+            placeholder={`Project Name`}
           // onChange={onChangeData}
           />
         </div>
         <div>
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="applicant">Applicant Name:</label>
           <Input
             label="NA"
-            id="category"
-            name="category"
-            value={data.category}
+            id="applicant"
+            name="applicant"
+            value={data.applicant}
             placeholder={`NA`}
           // onChange={onChangeData}
           />
@@ -234,23 +234,23 @@ const DetailsModal = ({
           />
         </div>
         <div>
-          <label htmlFor="course">Course:</label>
+          <label htmlFor="industry">Industry:</label>
           <Input
             label="NA"
-            id="course"
-            name="course"
-            value={data.course}
+            id="industry"
+            name="industry"
+            value={data.industry}
             placeholder={`NA`}
           // onChange={onChangeData}
           />
         </div>
         <div>
-          <label htmlFor="branch">Branch:</label>
+          <label htmlFor="scheme">Scheme:</label>
           <Input
             label="NA"
-            id="branch"
-            name="branch"
-            value={data.branch}
+            id="scheme"
+            name="scheme"
+            value={data.scheme}
             placeholder={`NA`}
           // onChange={onChangeData}
           />
@@ -269,18 +269,18 @@ const DetailsModal = ({
 
         </div>
         <div>
-          <label htmlFor="parent_mobile">Parent Mobile:</label>
+          <label htmlFor="project_brief">Project Details:</label>
           <Input
             label="NA"
-            id="parent_mobile"
-            name="parent_mobile"
-            value={data.parent_mobile}
+            id="project_brief"
+            name="project_brief"
+            value={data.project_brief}
             placeholder="Not Present"
           // onChange={onChangeData}
           />
           {/* {data.verifyparent ? <span style={{ color: "green" }}>Verified</span> : (<span style={{ color: "red" }}>Not Verified</span>)} */}
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="f_mobile">Family Mobile:</label>
           <Input
             label="NA"
@@ -290,10 +290,10 @@ const DetailsModal = ({
             placeholder="Not Present"
           // onChange={onChangeData}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="date_docSubmision">
-            Date of Document Submission:
+            Duration Start Date:
           </label>
           <Input
             label="NA"
@@ -305,7 +305,7 @@ const DetailsModal = ({
           />
         </div>
         <div>
-          <label htmlFor="lastExam_passingYear">Last Exam Passing Year:</label>
+          <label htmlFor="lastExam_passingYear">Duration End Date:</label>
           <Input
             label="NA"
             id="lastExam_passingYear"
@@ -316,17 +316,17 @@ const DetailsModal = ({
           />
         </div>
         <div>
-          <label htmlFor="team">Team/Staff:</label>
+          <label htmlFor="estimate_cost">Estimate Cost:</label>
           <Input
             label="NA"
-            id="team"
-            name="team"
-            value={data.team}
+            id="estimate_cost"
+            name="estimate_cost"
+            value={data.estimate_cost}
             placeholder={`NA`}
           // onChange={onChangeData}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="source">Source:</label>
           <Input
             label="NA"
@@ -336,7 +336,7 @@ const DetailsModal = ({
             placeholder={`NA`}
           // onChange={onChangeData}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="required">Required Document:</label>
           <Input
@@ -348,7 +348,7 @@ const DetailsModal = ({
           // onChange={onChangeData}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="required">Stage:</label>
           <Input
             label="NA"
@@ -358,7 +358,7 @@ const DetailsModal = ({
             placeholder={`NA`}
           // onChange={onChangeData}
           />
-        </div>
+        </div> */}
         {user.role === "agent" ? (
           <>
             <div>
@@ -386,8 +386,7 @@ const DetailsModal = ({
           </>
         ) : null}
 
-        {user.role === "editor" && user.value === true
-          // || user.role === "admin" || user.role === "superadmin"
+        {/* {user.role === "editor" && user.value === true
           ? (
             <>
               <div>
@@ -440,8 +439,7 @@ const DetailsModal = ({
                     onChange={user.role === "editor" ? onChangeData : undefined}
                   />
                 </div>
-                {/* <br />
-                <h6>*Current Balance :  ₹ {balance_money ? (balance_money) : (data.adv_payble_amt)} /-</h6> */}
+                
                 <br />
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <Button
@@ -529,59 +527,9 @@ const DetailsModal = ({
               Submit
             </Button>
           </div>
-        )}
+        )} */}
 
-        {/* {
-          user.role === "editor" && user.value === false ? (
-            <div>
-              <br />
-              <Typography variant="h5" component="h2" style={{ display: "flex", justifyContent: "center" }}>
-                Add Stages
-              </Typography>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Select Stage</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={stage}
-                    label="Stage"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"Stage1"}>Stage1</MenuItem>
-                    <MenuItem value={"Stage2"}>Stage2</MenuItem>
-                    <MenuItem value={"Stage3"}>Stage3</MenuItem>
-                  </Select>
-                </FormControl>
-                {
-                  stage === "Stage2" ? (
-                    <>
-                      <br />
-                      <br />
-                      <FormControlLabel required control={<Checkbox />} label="All Documents" />
-                      <br />
-                      <br />
-                      <Typography> Document deficiency on allotment letter </Typography>
-                      <FormControlLabel required control={<Checkbox />} label="No" />
-                    </>
-                  ) : stage === "Stage3" ? (
-                    <>
-                    <br />
-                      <FormControlLabel required control={<Checkbox />} label="Scholarship" /><br />
-                      <FormControlLabel required control={<Checkbox />} label="Exam Form" /><br />
-                      <FormControlLabel required control={<Checkbox />} label="Exam" /><br />
-                      <FormControlLabel required control={<Checkbox />} label="Attendance" />
-
-                    </>
-                  ) : null
-
-                }
-
-              </Box>
-            </div>
-          ) : null
-        } */}
-        <br />
+        {/* <br />
         {user.role === "editor" || user.role === "admin" || user.role === "superadmin" ? (
           <div>
             <h6>*Current Balance :  ₹ {balance_money || balance_money === 0 ? (balance_money) : (data.adv_payble_amt)} /-</h6>
@@ -590,12 +538,11 @@ const DetailsModal = ({
         }
         {user.role === "editor" || user.role === "admin" || user.role === "superadmin" || user.role === "agent" ? (
           <div>
-            {/* <h6>*Current Balance :  ₹ {balance_money || balance_money === 0 ? (balance_money) : (data.adv_payble_amt)} /-</h6> */}
             <br />
             <Amt_Table id={id} />
           </div>
         ) : (null)
-        }
+        } */}
       </Box>
     </Modal>
   );
@@ -657,6 +604,10 @@ const TableData = (props) => {
     }
   }
   const handleApproval = (AdmId) => {
+    const remark = window.prompt("Enter Approval Remark:");
+
+    // Check if the user clicked "OK" and provided a remark
+    if (remark !== null) {
     const userConfirmed = window.confirm(
       "Are you sure you want to proceed with the approval?"
     );
@@ -664,10 +615,12 @@ const TableData = (props) => {
       props.requestAdminEditDegree({
         id: AdmId,
         token: user.token,
+        remark: remark,
       });
     } else {
       console.log("User canceled the action.");
     }
+  }
   };
 
   const handleEditorApproval = (EditID, stage) => {
@@ -1117,285 +1070,13 @@ const TableData = (props) => {
       }
     }
   }, [props.candidate.loginData]);
-  // console.log(user);
-  // const columns = [
-  //   { field: "id", headerName: "Sr.No.", width: 100 },
-  //   { field: "candidateName", headerName: "Candidate Name", flex: 1 },
-  //   { field: "source", headerName: "Source", flex: 1 },
-  //   // { field: "documents", headerName: "Documets", flex: 1 },
-  //   { field: "branch", headerName: "Branch", flex: 1 },
-  //   {
-  //     field: "documentView",
-  //     headerName: "Document View",
-  //     flex: 1,
-  //     renderCell: (params) => (
-  //       <Link
-  //         to={`/doc/${params.row.document.branch}/${params.row.document.id}`}
-  //         style={{ textDecoration: "none" }}
-  //       >
-  //         {/* You can use any icon component for document view */}
-  //         <span role="img" aria-label="View Documents">
-  //           📄 View
-  //         </span>
-  //       </Link>
-  //     ),
-  //   },
-  //   {
-  //     field: "more",
-  //     headerName: "Details",
-  //     flex: 1,
-  //     renderCell: (params) => (
-  //       <Button onClick={() => handleOpen(params.row.document.id)}>
-  //         More Details..
-  //       </Button>
-  //     ),
-  //   },
-  //   user.role === "editor" &&
-  //     user.value === true && {
-  //       field: "approval",
-  //       headerName: "Approval",
-  //       flex: 1,
-  //       renderCell: (params) =>
-  //         params.row.approval.status === "false" ? (
-  //           <Button
-  //             variant="contained"
-  //             onClick={() => handleApproval(params.row.approval.id)}
-  //           >
-  //             Approve
-  //           </Button>
-  //         ) : (
-  //           <Button
-  //             variant="contained"
-  //             color="primary" // or "success" depending on your theme
-  //             disabled={true}
-  //           >
-  //             Approved
-  //           </Button>
-  //         ),
-  //     },
-  // user.role === "editor" &&
-  //   user.value === false && {
-  //     field: "approve",
-  //     headerName: "Approval",
-  //     flex: 1,
-  //     renderCell: (params) =>
-  //       params.row.approval.status === "false" ? (
-  //         <Button
-  //           variant="contained"
-  //           color="info" // or "success" depending on your theme
-  //           disabled={true}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "editor" ? (
-  //         <Button
-  //           variant="contained"
-  //           onClick={() => handleEditorApproval(params.row.approval.id)}
-  //         >
-  //           Approve
-  //         </Button>
-  //       ) : (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleApproval(params.row.approval.id)}
-  //         >
-  //           Approved
-  //         </Button>
-  //       ),
-  //   },
-  // user.role === "admin" &&
-  //   user.value === true && {
-  //     field: "adminapproval",
-  //     headerName: "Approval",
-  //     flex: 1,
-  //     renderCell: (params) =>
-  //       params.row.approval.status === "false" ? (
-  //         <Button
-  //           variant="contained"
-  //           color="info" // or "success" depending on your theme
-  //           disabled={true}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "editor" ? (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleApproval(params.row.approval.id)}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "admin" ? (
-  //         <Button
-  //           variant="contained"
-  //           onClick={() => handleEditVerify(params.row.adminapproval.id)}
-  //         >
-  //           Approve
-  //         </Button>
-  //       ) : (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleEditorApproval(params.row.adminapproval.id)}
-  //         >
-  //           Approved
-  //         </Button>
-  //       ),
-  //   },
-  //   user.role === "admin" &&
-  //     user.value === false && {
-  //       field: "adminverify",
-  //       headerName: "Approval",
-  //       flex: 1,
-  //       renderCell: (params) =>
-  //         params.row.approval.status === "false" ? (
-  //           <Button
-  //             variant="contained"
-  //             color="info" // or "success" depending on your theme
-  //             disabled={true}
-  //           >
-  //             Waiting
-  //           </Button>
-  //         ) : params.row.approval.status === "editor" ? (
-  //           <Button
-  //             variant="contained"
-  //             disabled={true}
-  //             // onClick={() => handleApproval(params.row.approval.id)}
-  //           >
-  //             Waiting
-  //           </Button>
-  //         ) : params.row.approval.status === "admin" ? (
-  //           <Button
-  //             variant="contained"
-  //             disabled={true}
-  //             // onClick={() => handleEditorApproval(params.row.adminapproval.id)}
-  //           >
-  //             Waiting
-  //           </Button>
-  //         ) : params.row.approval.status === "verify" ? (
-  //           <Button
-  //             variant="contained"
-  //             onClick={() => handleFinalEdit(params.row.adminverify.id)}
-  //           >
-  //             Approve
-  //           </Button>
-  //         ) : (
-  //           <Button variant="contained" disabled={true}>
-  //             Approved
-  //           </Button>
-  //         ),
-  //     },
-
-  // user.role === "superadmin" &&
-  //   user.value === true && {
-  //     field: "superadmin",
-  //     headerName: "Approval",
-  //     flex: 1,
-  //     renderCell: (params) =>
-  //       params.row.approval.status === "false" ? (
-  //         <Button
-  //           variant="contained"
-  //           color="info" // or "success" depending on your theme
-  //           disabled={true}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "editor" ? (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleApproval(params.row.approval.id)}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "admin" ? (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleEditorApproval(params.row.adminapproval.id)}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "verify" ? (
-  //         <Button
-  //           variant="contained"
-  //           disabled={true}
-  //           // onClick={() => handleFinalEdit(params.row.adminverify.id)}
-  //         >
-  //           Waiting
-  //         </Button>
-  //       ) : params.row.approval.status === "super" ? (
-  //         <Button
-  //           variant="contained"
-  //           onClick={() => handleSuperAdminEdit(params.row.superadmin.id)}
-  //         >
-  //           Approve
-  //         </Button>
-  //       ) : (
-  //         <Button variant="contained" disabled={true}>
-  //           Approved
-  //         </Button>
-  //       ),
-  //   },
-  // ];
-
-  // const rows = list.map((item, index) => ({
-  //   id: index + 1,
-  //   candidateName: item.candidateName,
-  //   source: item.source,
-  //   branch: item.branch,
-  //   document: {
-  //     id: item._id, // Replace with the actual field in your response
-  //     branch: item.branch, // Replace with the actual field in your response
-  //   },
-  //   more: {
-  //     id: item._id,
-  //   },
-  //   approval: {
-  //     id: item._id,
-  //     status: item.status,
-  //   },
-
-  //   approve: {
-  //     id: item._id,
-  //     status: item.status,
-  //   },
-  //   adminapproval: {
-  //     id: item._id,
-  //     status: item.status,
-  //   },
-  //   adminverify: {
-  //     id: item._id,
-  //     status: item.status,
-  //   },
-  //   superadmin: {
-  //     id: item._id,
-  //     status: item.status,
-  //   },
-  // }));
 
   const generateColumns = (user) => {
     const commonColumns = [
       { field: "id", headerName: "Sr.No.", width: 100 },
-      { field: "candidateName", headerName: "Applicant Name", flex: 1 },
-      { field: "source", headerName: "Industry", flex: 1 },
-      { field: "branch", headerName: "Branch", flex: 1 },
-      // {
-      //   field: "documentView",
-      //   headerName: "Document View",
-      //   flex: 1,
-      //   renderCell: (params) => (
-      //     <Link
-      //       to={`/doc/${params.row.document.branch}/${params.row.document.id}`}
-      //       style={{ textDecoration: "none" }}
-      //     >
-      //       <span role="img" aria-label="View Documents">
-      //         📄 View
-      //       </span>
-      //     </Link>
-      //   ),
-      // },
+      { field: "applicant", headerName: "Applicant Name", flex: 1 },
+      { field: "project", headerName: "Project Name", flex: 1 },
+      // { field: "branch", headerName: "Branch", flex: 1 },
       {
         field: "documentView",
         headerName: "Document View",
@@ -1418,7 +1099,7 @@ const TableData = (props) => {
               style={{ textDecoration: "none" }}
             >
               <span role="img" aria-label="View Documents">
-                📄 View ({uploadedCount}/ 17)
+                📄 View ({uploadedCount}/ 7)
               </span>
             </Link>
           );
@@ -1431,7 +1112,7 @@ const TableData = (props) => {
         flex: 1,
         renderCell: (params) => (
           <Button onClick={() => handleOpen(params.row.document.id)}>
-            Add More Details..
+            More Details..
           </Button>
         ),
       },
@@ -1758,12 +1439,13 @@ const TableData = (props) => {
   };
 
   const columns = generateColumns(user);
+  console.log(list);
   const rows = list.map((item, index) => {
     const total = {
       id: index + 1,
-      candidateName: item.candidateName,
-      source: item.source,
-      branch: item.branch,
+      applicant: item.applicant,
+      project: item.project_name,
+      // branch: item.branch,
       document: {
         id: item._id,
         branch: item.branch,

@@ -80,125 +80,83 @@ exports.uploadShopData = async (req, res) => {
     // console.log(req.body);
     // const { p_id } = req.params.id;
     const {
-      candidateName,
+      applicant,
+      project_name,
       mobile,
-      p_mobile,
       gender,
-      course,
-      branch_obj,
+      scheme,
+      industry,
+      project_brief,
       date_docSubmision,
       lastExam_passingYear,
-      team,
-      source_name,
-      source_id,
-      family_mobile,
-      // entrance_exam,
-      // dtenumber,
-      // capround,
-      // erpid,
-      // admission_date,
-      // tution_fees,
-      // deve_fees,
-      // total_fees,
-      // govt_fees,
-      // discount,
-      // student_fees,
-      // paid_fees,
-      // balance_fees,
-      // doc_cap_lett,
-      category,
-      // stu_rec_fees,
-      p_id,
+      estimate_cost,
+      applicant_id,
     } = req.body;
+
     const university = req.body.university || req.body.otherUniversity;
     // let documents = [];
 
-    const branch_name = JSON.parse(branch_obj);
+    // const branch_name = JSON.parse(branch_obj);
     // if (req.files && req.files.length > 0) {
     //   documents = req.files.map((file) => {
     //     return { img: file.filename };
     //   });
     // }
 
-    if (course === "M.Tech") {
-      if (category === "SC") {
-        amt = branch_name.fees;
-      } else {
-        amt = branch_name.amount;
-      }
-    } else if (course === "POLY FY & DSY") {
-      if (category === "EBC" || category === "OBC") {
-        amt = branch_name.fees;
-      } else {
-        amt = branch_name.amount;
-      }
-    } else {
-      amt = branch_name.amount;
-    }
+    // if (course === "M.Tech") {
+    //   if (category === "SC") {
+    //     amt = branch_name.fees;
+    //   } else {
+    //     amt = branch_name.amount;
+    //   }
+    // } else if (course === "POLY FY & DSY") {
+    //   if (category === "EBC" || category === "OBC") {
+    //     amt = branch_name.fees;
+    //   } else {
+    //     amt = branch_name.amount;
+    //   }
+    // } else {
+    //   amt = branch_name.amount;
+    // }
 
     // console.log(amt);
 
-    const existingApplication = await upload
-      .findOne({ mobile: req.body.mobile })
-      .exec();
-    if (existingApplication) {
-      return res.status(400).json({ message: "Same Application Already Exist" });
-    }
+    // const existingApplication = await upload
+    //   .findOne({ mobile: req.body.mobile })
+    //   .exec();
+    // if (existingApplication) {
+    //   return res.status(400).json({ message: "Same Application Already Exist" });
+    // }
 
 
-    const parent_mobile = p_mobile !== "undefined" ? Number(p_mobile) : "NA";
-    const source = source_name !== "undefined" ? source_name : "Other";
-    const f_mobile = family_mobile !== "undefined" ? family_mobile : "NA";
+    // const parent_mobile = p_mobile !== "undefined" ? Number(p_mobile) : "NA";
+    // const source = source_name !== "undefined" ? source_name : "Other";
+    // const f_mobile = family_mobile !== "undefined" ? family_mobile : "NA";
 
-    const verify = await otp.findOne({ mobile: mobile }).exec();
-    if(!verify){
-      return res.status(400).json({ message: "Verify Candidate Mobile Number" });
-    }
-    // const verifycandidate = verify ? true : false
+    // const verify = await otp.findOne({ mobile: mobile }).exec();
+    // if (!verify) {
+    //   return res.status(400).json({ message: "Verify Candidate Mobile Number" });
+    // }
+    // // const verifycandidate = verify ? true : false
 
-    const p_verify = await otp.findOne({ mobile: p_mobile }).exec();
-    if (!p_verify) {
-      return res.status(400).json({ message: "Verify Parent Mobile Number" });
-    }
+    // const p_verify = await otp.findOne({ mobile: p_mobile }).exec();
+    // if (!p_verify) {
+    //   return res.status(400).json({ message: "Verify Parent Mobile Number" });
+    // }
     // const verifyparent = p_verify ? true : false
 
     const student = new upload({
-      candidateName,
+      applicant,
+      project_name,
       mobile,
-      parent_mobile,
       gender,
-      course,
-      branch: branch_name.name,
-      adv_payble_amt: amt,
-      // amount: branch_name.amount,
-      // fees: branch_name.fees,
+      scheme,
+      industry,
+      project_brief,
       date_docSubmision,
       lastExam_passingYear,
-      team,
-      source,
-      source_id,
-      f_mobile,
-      // entrance_exam,
-      // dtenumber,
-      // capround,
-      // erpid,
-      // university,
-      // admission_date,
-      // tution_fees,
-      // deve_fees,
-      // total_fees,
-      // govt_fees,
-      // discount,
-      // student_fees,
-      // paid_fees,
-      // balance_fees,
-      // doc_cap_lett,
-      category,
-      // stu_rec_fees,
-      // documents,
-      p_id,
-      // verifycandidate,
-      // verifyparent
+      estimate_cost,
+      applicant_id
     });
 
     const response = await student.save();

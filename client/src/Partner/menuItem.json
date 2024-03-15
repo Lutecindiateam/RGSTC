@@ -1,0 +1,67 @@
+{
+    "usersMenuItems": [
+      { "link": "/app/my-profile", "label": "My Profile" },
+      { "link": "/app/account-settings", "label": "Account Settings" },
+      { "link": "/app/invoice", "label": "Invoices" },
+      { "link": "/app/user-activity", "label": "User Activity" },
+      { "link": "/app/my-task", "label": "My Tasks" },
+      { "link": "/app/my-contact", "label": "My Contact" }
+    ],
+    "projectMenuItems": [
+      { "link": "/app/analytics", "label": "Analytics" },
+      { "link": "/app/new-project", "label": "New Project" },
+      { "link": "/app/project-list", "label": "Project List" },
+      { "link": "/app/project-grid", "label": "Project Grid" },
+      { "link": "/app/project-details", "label": "Project Details" },
+      { "link": "/app/clients-list", "label": "Clients" }
+    ],
+    "bootstrapMenuItems": [
+      { "link": "/docs/accordion", "label": "Accordion" },
+      { "link": "/docs/alerts", "label": "Alerts" },
+      { "link": "/docs/avatar", "label": "User Avatar" },
+      { "link": "/docs/badges", "label": "Badges" },
+      { "link": "/docs/breadcrumb", "label": "Breadcrumb" },
+      { "link": "/docs/buttons", "label": "Buttons" },
+      { "link": "/docs/cards", "label": "Cards" },
+      { "link": "/docs/carousel", "label": "Carousel" },
+      { "link": "/docs/collapse", "label": "Collapse" },
+      { "link": "/docs/dropdowns", "label": "Dropdowns" },
+      { "link": "/docs/listgroup", "label": "List group" },
+      { "link": "/docs/modal", "label": "Modal" },
+      { "link": "/docs/navbar", "label": "Navbar" },
+      { "link": "/docs/navstabs", "label": "Navs and tabs" },
+      { "link": "/docs/offcanvas", "label": "Offcanvas" },
+      { "link": "/docs/pagination", "label": "Pagination" },
+      { "link": "/docs/placeholders", "label": "Placeholders" },
+      { "link": "/docs/popovers", "label": "Popovers" },
+      { "link": "/docs/progress", "label": "Progress" },
+      { "link": "/docs/spinners", "label": "Spinners" },
+      { "link": "/docs/toasts", "label": "Toasts" }
+    ],
+    "fontIconMenuItems": [
+      { "link": "/docs/bootstrap-icon", "label": "Bootstrap Icon" },
+      { "link": "/docs/flag-icon", "label": "Country Flag icon" },
+      { "link": "/docs/fontawesome-icon", "label": "Font awesome" },
+      { "link": "/docs/linear-icon", "label": "Simple line icon" },
+      { "link": "/docs/weather-icon", "label": "Weather icon" }
+    ],
+    "chartMenuItems": [
+      { "link": "/docs/apex", "label": "Apex chart" },
+      { "link": "/docs/peity", "label": "Peity chart" }
+    ],
+    "widgetsMenuItems": [
+      { "link": "/docs/widgets-basic-card", "label": "Basic card" },
+      { "link": "/docs/widgets-card-tiles", "label": "Card tiles" },
+      { "link": "/docs/widgets-card-tab", "label": "Tabbed card" }
+    ],
+    "authenticationMenuItems": [
+      { "link": "/signin", "label": "Sign in" },
+      { "link": "/signup", "label": "Sign up" },
+      { "link": "/password-reset", "label": "Password reset" },
+      { "link": "/two-step", "label": "2-Step Authentication" },
+      { "link": "/lockscreen", "label": "Lockscreen" },
+      { "link": "/maintenance", "label": "Maintenance" },
+      { "link": "/404", "label": "404" }
+    ]
+}
+  

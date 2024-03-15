@@ -2,23 +2,22 @@ const mongoose = require("mongoose");
 
 const applySchema = new mongoose.Schema(
   {
-    // name: {
-    //   type: String,
+    name: {
+      type: String,
 
-    //   required: true,
-    //   trim: true,
-    // },
+      required: true,
+      trim: true,
+    },
 
-    // phone: {
-    //   type: Number,
-    //   trim: true,
-    // },
-    // address: {
-    //   type: String,
-
-    //   required: true,
-    //   trim: true,
-    // },
+    phone: {
+      type: Number,
+      trim: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     // pincode: {
     //   type: Number,
 

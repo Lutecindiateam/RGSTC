@@ -84,9 +84,10 @@ exports.getShopsData = async (req, res) => {
 };
 
 exports.getSpecShopData = async (req, res) => {
+  // console.log(req.params);
   try {
-    // const response = await upload.find({ p_id: req.params.id });
-    const response = await upload.find({ rejection: null });
+    const response = await upload.find({ applicant_id: req.params.id, rejection: null });
+    // const response = await upload.find({ rejection: null });
     if (response.length > 0) {
       return res.status(200).json({
         data: { response },
@@ -175,16 +176,16 @@ exports.getfinancial = async (req, res) => {
 //beney paul sir
 exports.editEditorStatus = async (req, res) => {
   try {
-
-    const existing = await financial.findOne({ adm_id: req.params.id })
-    if (!existing) {
-      return res.status(500).json({ message: "Before proceeding with approval, kindly add the incentive. Further actions are currently restricted." })
-    }
+    // const existing = await financial.findOne({ adm_id: req.params.id })
+    // if (!existing) {
+    //   return res.status(500).json({ message: "Before proceeding with approval, kindly add the incentive. Further actions are currently restricted." })
+    // }
     const response = await upload.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-          status: "editor"
+          status: "editor",
+          referee_remark: req.body.remark
         },
       },
       { new: true }
@@ -514,7 +515,7 @@ exports.getBranchWiseData = async (req, res) => {
       // { $sort: { total_sourcewiseadm: -1 } },
       // { $limit: 5 }
     ]);
-   
+
     const branches = adms.map(job => ({
       name: job._id.name,
       total_branchwiseadm: job.total_branchwiseadm

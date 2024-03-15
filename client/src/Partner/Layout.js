@@ -19,7 +19,7 @@ import {
   userLogout
 } from "../Redux/actions";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -185,7 +185,9 @@ const Layout = ({ children, ...props }) => {
               {/* User information goes here */}
               <p style={{ color: "black" }}>Name: {profile.name}</p>
               <p style={{ color: "black" }}>Email: {profile.email}</p>
-              <p style={{ color: "black" }}>Role: {profile.role}</p>
+              {/* <p style={{ color: "black" }}>Role: {profile.role}</p> */}
+              <Link as='a' className="btn py-2 btn-primary w-100 mt-3 rounded-pill" to="/logout" role="button">Logout</Link>
+
             </div>
           )}
         </Toolbar>
