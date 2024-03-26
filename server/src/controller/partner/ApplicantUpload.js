@@ -232,7 +232,6 @@ exports.createPreproposal = async (req, res) => {
 exports.getPreProposal = async (req, res) => {
   try {
     const response = await preproposal.find();
-    console.log(response);
     if (response) {
       return res.status(200).json({
         data: { response },

@@ -775,21 +775,21 @@ const TableData = (props) => {
     }
   }, []);
 
-  useEffect(() => {
-    let addDegreeData = props.data.addDegreeData;
-    if (addDegreeData !== undefined) {
-      if (addDegreeData?.data?.status == "success") {
-        alert("Incentive Added Successfully.")
-        props.requestAdminFunctionalCandidate({
-          id: addDegreeData.data.data.response.adm_id,
-          // token: loginData.data.data.token,
-        });
-        // Swal.fire("Good job!", "Incentive Added Successfully.", "success");
-        props.data.addDegreeData = undefined;
-        // handleClose();
-      }
-    }
-  }, [props.data.addDegreeData]);
+  // useEffect(() => {
+  //   let addDegreeData = props.data.addDegreeData;
+  //   if (addDegreeData !== undefined) {
+  //     if (addDegreeData?.data?.status == "success") {
+  //       alert("Incentive Added Successfully.")
+  //       props.requestAdminFunctionalCandidate({
+  //         id: addDegreeData.data.data.response.adm_id,
+  //         // token: loginData.data.data.token,
+  //       });
+  //       // Swal.fire("Good job!", "Incentive Added Successfully.", "success");
+  //       props.data.addDegreeData = undefined;
+  //       // handleClose();
+  //     }
+  //   }
+  // }, [props.data.addDegreeData]);
 
   // useEffect(() => {
   //   let empLoginData = props.employee.empLoginData;
@@ -1030,6 +1030,35 @@ const TableData = (props) => {
         flex: 1,
         renderCell: (params) =>
             params.row.approval.status === "true" ? (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "green", color: "white" }}
+            >
+              Approved
+            </Button>
+          ) : params.row.approval.rejection !== null ? (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "red", color: "white" }}
+            >
+              Rejected
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "yellow" }}
+              disabled={true}>
+              Processing
+            </Button>
+          )
+      });
+    }else if(user?.role === "superadmin"){
+      roleSpecificColumns.push({
+        field: "approval",
+        headerName: "Status",
+        flex: 1,
+        renderCell: (params) =>
+          params.row.approval.status === "true" ? (
             <Button
               variant="contained"
               style={{ backgroundColor: "green", color: "white" }}
