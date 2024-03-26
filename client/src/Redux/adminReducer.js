@@ -310,7 +310,7 @@ export default (state = {}, { type, data }) => {
       case RECEIVE_ADMIN_FUNCTIONAL:
         return {
           ...state,
-          functionalData: data,
+          preproposalData: data,
         };
       case RECEIVE_ADMIN_DELETE_FUNCTIONAL:
         return {
@@ -393,7 +393,7 @@ export default (state = {}, { type, data }) => {
       case RECEIVE_ADMIN_DELETE_TAG:
         return {
           ...state,
-          deleteTagData: data,
+          approveData: data,
         };
       case RECEIVE_ADMIN_EDIT_TAG:
         return {

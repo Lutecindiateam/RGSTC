@@ -89,7 +89,7 @@ export default (state = {}, { type, data }) => {
     case RECEIVE_INTERVIEW_CONFIRM:
       return {
         ...state,
-        interviewConfirmData: data,
+        preProposalData: data,
       };
     case RECEIVE_INTERVIEW_NOT_CONFIRM:
       return {
@@ -296,7 +296,7 @@ export default (state = {}, { type, data }) => {
     case RECEIVE_SEARCH_JOB:
       return {
         ...state,
-        searchJobData: data,
+        inprogressData: data,
       };
 
     default:

@@ -247,19 +247,6 @@ export const jobAlert = (obj) => {
     });
 };
 
-export const candidatelogo = (obj) => {
-  return axios
-    .patch("/reset/" + obj.id, obj.data, {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
 export const getComment = (obj) => {
   return axios
@@ -340,7 +327,44 @@ export const interviewApprove = (obj) => {
     });
 };
 
+export const appliInProgress = (obj) => {
+  return axios
+    .get("/applicant/inprogress/" + obj.id)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const preProposalData = (obj) => {
+  return axios
+    .post("/applicant/preproposal", obj.data.formData)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
 //*********END********/
+
+export const candidatelogo = (obj) => {
+  return axios
+    .patch("/reset/" + obj.id, obj.data, {
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
 
 export const googlelogin = (obj) => {
   return axios
@@ -633,17 +657,7 @@ export const checkBookmarkApplied = (obj) => {
 //     });
 // };
 
-export const confirmInterview = (obj) => {
-  return axios
-    .post("/conforminterview/" + obj.id, obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const notconfirmInterview = (obj) => {
   return axios
@@ -751,19 +765,7 @@ export const reject = (obj) => {
 //     });
 // };
 
-export const searchJob = (obj) => {
-  return axios
-    .post("/job/search", obj.data, {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 // export const empforgot1 = (obj) => {
 //   return axios

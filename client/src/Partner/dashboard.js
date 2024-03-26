@@ -183,20 +183,20 @@ const Dashboard = ({ information, ...props }) => {
     let loginData = props.data.loginData;
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
-        if (
-          loginData?.data?.data.role === "admin" ||
-          loginData?.data?.data.role === "editor" ||
-          loginData?.data?.data.role === "superadmin"
-        ) {
-          setUser(loginData.data.data);
-          props.requestAdminMonthJob({
-            token: loginData.data.data.token,
-          });
-          props.requestGetJobAlert({
-            token: loginData.data.data.token,
-          });
-          props.requestAdminSixCompanies();
-        }
+        // if (
+        //   loginData?.data?.data.role === "admin" ||
+        //   loginData?.data?.data.role === "editor" ||
+        //   loginData?.data?.data.role === "superadmin"
+        // ) {
+        setUser(loginData.data.data);
+        props.requestAdminMonthJob({
+          token: loginData.data.data.token,
+        });
+        props.requestGetJobAlert({
+          token: loginData.data.data.token,
+        });
+        props.requestAdminSixCompanies();
+        // }
       }
     }
   }, [props?.data?.loginData]);
@@ -216,14 +216,14 @@ const Dashboard = ({ information, ...props }) => {
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
         const { role } = loginData?.data?.data;
-        if (
-          role === "admin" || role === "editor" || role === "superadmin"
-        ) {
-          setUser(loginData.data.data);
-          props.requestAdminCategoryJob({
-            token: loginData.data.data.token,
-          });
-        }
+        // if (
+        //   role === "admin" || role === "editor" || role === "superadmin"
+        // ) {
+        setUser(loginData.data.data);
+        props.requestAdminCategoryJob({
+          token: loginData.data.data.token,
+        });
+        // }
       }
     }
   }, [
@@ -534,7 +534,7 @@ const Dashboard = ({ information, ...props }) => {
           </div>
           {
             // console.log(user.role === "editor" || user.role === "admin" || user.role === "superadmin") &&
-              user.role === "superadmin" ?
+            user.role === "superadmin" ?
               <Bar />
               : null
           }

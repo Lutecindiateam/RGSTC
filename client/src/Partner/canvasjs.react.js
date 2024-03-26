@@ -1,6 +1,8 @@
+import "./canvasJS.css"
 var React = require("react");
 var CanvasJS = require("./canvasjs.min");
 CanvasJS = CanvasJS.Chart ? CanvasJS : window.CanvasJS;
+
 
 class CanvasJSChart extends React.Component {
   static _cjsContainerId = 0;
@@ -14,8 +16,8 @@ class CanvasJSChart extends React.Component {
       props.containerProps && props.containerProps.height
         ? props.containerProps.height
         : this.options.height
-        ? this.options.height + "px"
-        : "500px";
+          ? this.options.height + "px"
+          : "500px";
     this.chartContainerId =
       "canvasjs-react-chart-container-" + CanvasJSChart._cjsContainerId++;
   }

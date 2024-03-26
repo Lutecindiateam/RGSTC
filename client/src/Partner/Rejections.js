@@ -434,16 +434,16 @@ const Rejections = (props) => {
     let loginData = props.data.loginData;
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
-        if (
-          loginData?.data?.data.role === "admin" ||
-          loginData.data.data.role === "editor" ||
-          loginData.data.data.role === "superadmin"
-        ) {
+        // if (
+        //   loginData?.data?.data.role === "admin" ||
+        //   loginData.data.data.role === "editor" ||
+        //   loginData.data.data.role === "superadmin"
+        // ) {
           setUser(loginData.data.data);
           props.requestAdminCategoryJob({
             token: loginData.data.data.token,
           });
-        }
+        // }
       }
     }
   }, [
@@ -555,7 +555,7 @@ const Rejections = (props) => {
       ),
     },
   ];
-
+  
   const rows = list.map((item, index) => ({
     id: index + 1,
     candidateName: item.candidateName,

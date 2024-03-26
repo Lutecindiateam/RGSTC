@@ -35,7 +35,7 @@ exports.getRefereeCommittee = async (req, res) => {
 
 exports.addAdminUsers = async (req, res) => {
     try {
-        const { email, name, password, role } = req.body;
+        const { email, name, password, role, permission } = req.body;
         const existingUser = await partnerAdmin.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
@@ -45,6 +45,7 @@ exports.addAdminUsers = async (req, res) => {
             email,
             password,
             role,
+            permission,
             // active,
         });
         user.password = await bcrypt.hash(password, 10);
@@ -60,8 +61,8 @@ exports.deleteUser = async (req, res) => {
     try {
         const id = req.params.id;
         const response = await partnerAdmin.deleteOne({ _id: id });
-        if(response){
-            return res.status(200).json({status: "success"})
+        if (response) {
+            return res.status(200).json({ status: "success" })
         }
     } catch (err) {
         console.log(err.message);

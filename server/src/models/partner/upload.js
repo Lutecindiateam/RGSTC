@@ -88,78 +88,7 @@ const applySchema = new mongoose.Schema(
       // required: true,
       default: "NA",
     },
-    entrance_exam: {
-      type: String,
-      // required: true,
-    },
-    dtenumber: {
-      type: String,
-      // required: true,
-    },
-    capround: {
-      type: String,
-      // required: true,
-    },
-    university: {
-      type: String,
-      // required:true
-    },
-    erpid: {
-      type: String,
-      // required: true,
-    },
-    // otherUniversity: {
-    //   type: String,
-    //   // required: true,
-    // },
-    admission_date: {
-      type: Date,
-      // required: true,
-    },
-    tution_fees: {
-      type: Number,
-      // required: true,
-    },
-    deve_fees: {
-      type: Number,
-      // required: true,
-    },
-    category: {
-      type: String,
-      // required: true,
-    },
-    doc_cap_lett: {
-      type: String,
-      // required: true,
-    },
-    stu_rec_fees: {
-      type: Number,
-      // required: true,
-    },
-    balance_fees: {
-      type: Number,
-      // required: true,
-    },
-    paid_fees: {
-      type: Number,
-      // required: true,
-    },
-    total_fees: {
-      type: Number,
-      // required: true,
-    },
-    govt_fees: {
-      type: Number,
-      // required: true,
-    },
-    discount: {
-      type: Number,
-      // required: true,
-    },
-    student_fees: {
-      type: Number,
-      // required: true,
-    },
+
     p_id: {
       type: String,
       // required: true,
@@ -192,22 +121,6 @@ const applySchema = new mongoose.Schema(
       type: String,
       // required: true,
     },
-    // cheque_date: {
-    //   type: String,
-    // },
-    // cheque_no: {
-    //   type: String,
-    //   trim: true
-    // },
-    // paid_amount: {
-    //   type: String,
-    //   trim: true
-    //   // required: true,
-    // },
-    // balance: {
-    //   type: String,
-    //   // required: true,
-    // },
     status: {
       type: String,
       default: false,
@@ -237,9 +150,13 @@ const applySchema = new mongoose.Schema(
       type: String,
       default: null
     },
-    referee_remark:{
+    referee_remark: {
       type: String,
-      default: "Not Entered"
+      trim: true
+    },
+    committee_remark: {
+      type: String,
+      trim: true
     }
     // verifycandidate: {
     //   type: Boolean,

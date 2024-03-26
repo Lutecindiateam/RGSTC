@@ -53,6 +53,10 @@ const applySchema = new mongoose.Schema(
       type: Boolean,
       default: true
     },
+    permission: {
+      type: Array,
+      trim: true
+    }
   },
 
   { timestamps: true }

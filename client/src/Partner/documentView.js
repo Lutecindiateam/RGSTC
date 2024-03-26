@@ -532,10 +532,11 @@ const DocView = (props) => {
   return (
     <Layout>
       <Fragment>
-        <Card bordered={false}>
+        <Card bordered={false} style={{ background: "#ececec" }}>
           <Title level={4} className="m-2 text-center">
-            Upload Candidate Documents
+            Upload Project Documents
           </Title>
+          <hr />
           <Typography
             style={{ fontSize: "18px", color: "green", marginLeft: "17%" }}
           >

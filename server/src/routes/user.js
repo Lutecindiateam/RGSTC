@@ -24,13 +24,15 @@ const {
   uploadShopData,
   getEditorAdmission,
   getaAgentSource,
-} = require("../controller/partner/partnerupload");
+  createPreproposal,
+  getPreProposal,
+  editPreproposal,
+} = require("../controller/partner/ApplicantUpload");
 const multer = require("multer");
 const path = require("path");
 const {
   authenticate_partner,
   forget_partner,
-  create_partner_account,
   admin_action,
   adminupdate,
   getPartnerProfile,
@@ -40,6 +42,8 @@ const {
   getAgent,
   editResetPass,
   getAdminUsers,
+  registerApplicant,
+  getInProgressProjects,
 } = require("../controller/partner/partner");
 const {
   getShopsData,
@@ -60,6 +64,7 @@ const {
   getTotalPaidAmount,
   getDashboardData,
   getBranchWiseData,
+  getProjectRequest,
 } = require("../controller/partner/admin");
 const { requireSignin } = require("../common-middleware");
 const {
@@ -79,6 +84,7 @@ const {
 const { AddAmount, getBranchData } = require("../controller/partner/amount");
 const { sendOtp, verifyOtp, resendCandidateOtp, resendParentOtp } = require("../controller/partner/otp");
 const { saveScheme, getScheme, getRefereeCommittee, addAdminUsers, deleteUser } = require("../controller/partner/scheme");
+const { createRole, getAdminRole, editParticularRole, deleteRole } = require("../controller/partner/role");
 
 const router = express.Router();
 
@@ -130,7 +136,7 @@ router.post("/getprofile", getprofile);
 // router.get("/getrecords",getRecords)
 // http://localhost:5000/api/getallinfo/userData
 router.post("/authenticate_partner", authenticate_partner);
-router.post("/create_partner_account", create_partner_account);
+router.post("/create_partner_account", registerApplicant);
 router.patch("/forget_partner", forget_partner);
 //API for partner
 router.post("/partner/admin/login", partnerAdminLogin);
@@ -193,7 +199,16 @@ router.get("/dashboard/data", getDashboardData)
 router.get("/admin/branch/data", getBranchWiseData);
 router.post("/admin/addUser", upload.none(), addAdminUsers);
 router.delete("/admin/delete/:id", deleteUser);
-
+router.get("/applicant/inprogress/:id", getInProgressProjects);
+router.get("/admin/getRequest", getProjectRequest);
+router.post("/applicant/preproposal",upload.none(), createPreproposal);
+router.get("/committee/preproposal", getPreProposal);
+router.patch("/committee/approve/:id", editPreproposal)
+//roles
+router.post("/admin/addrole", createRole);
+router.get("/admin/getrole", getAdminRole);
+router.patch("/admin/editPartiCularRole/:id", editParticularRole);
+router.delete("/admin/deleteRole/:id", deleteRole);
   //scheme management
   router.post("/save/scheme", saveScheme);
 router.get("/get/scheme", getScheme);

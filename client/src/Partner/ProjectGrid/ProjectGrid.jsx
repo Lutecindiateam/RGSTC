@@ -7,24 +7,29 @@ import {
     requestGetCandidate
 } from "../../Redux/actions";
 import { connect } from "react-redux";
+import './project.css';
+import { useNavigate } from 'react-router-dom';
+
 const ProjectGrid = (props) => {
     const [user, setUser] = useState({});
     const [list, setList] = useState([]);
+    const navigate = useNavigate();
 
-    console.log(list);
-
+    const handleDetails = () => {
+        navigate("/project-details")
+    }
     useEffect(() => {
         let loginData = props.candidate.loginData;
         if (loginData !== undefined) {
-          if (loginData?.data?.status == "success") {
-            props.requestGetCandidate({
-              id: loginData.data.data.id,
-              role: loginData.data.data.role,
-              token: loginData.data.data.token,
-            });
-          }
+            if (loginData?.data?.status == "success") {
+                props.requestGetCandidate({
+                    id: loginData.data.data.id,
+                    role: loginData.data.data.role,
+                    token: loginData.data.data.token,
+                });
+            }
         }
-      }, []);
+    }, []);
 
     useEffect(() => {
         let loginData = props.data.loginData;
@@ -48,32 +53,32 @@ const ProjectGrid = (props) => {
         let getInterviewData = props.employee.getInterviewData;
         // console.log(getCandidateData);
         if (getInterviewData !== undefined) {
-          if (getInterviewData?.data?.status === "success") {
-            setList(getInterviewData.data.data.response);
-          }
+            if (getInterviewData?.data?.status === "success") {
+                setList(getInterviewData.data.data.response);
+            }
         }
-      }, [props.employee.getInterviewData, props.data.loginData]);
-    
-      useEffect(() => {
+    }, [props.employee.getInterviewData, props.data.loginData]);
+
+    useEffect(() => {
         let getCandidateData = props.candidate.getCandidateData;
         // console.log(getCandidateData);
         if (getCandidateData !== undefined) {
-          if (getCandidateData?.data?.status === "success") {
-            setList(getCandidateData.data.data.response);
-          }
+            if (getCandidateData?.data?.status === "success") {
+                setList(getCandidateData.data.data.response);
+            }
         }
-      }, [props.candidate.getCandidateData, props.data.loginData]);
-    
-      //Admin api
-      useEffect(() => {
+    }, [props.candidate.getCandidateData, props.data.loginData]);
+
+    //Admin api
+    useEffect(() => {
         let monthWiseJobData = props.data.monthWiseJobData;
         if (monthWiseJobData !== undefined) {
-          if (monthWiseJobData?.data?.status == "success") {
-            setList(monthWiseJobData.data.data.response);
-          }
+            if (monthWiseJobData?.data?.status == "success") {
+                setList(monthWiseJobData.data.data.response);
+            }
         }
-      }, [props.data.monthWiseJobData, props.data.loginData]);
-    
+    }, [props.data.monthWiseJobData, props.data.loginData]);
+
 
     return (
         <Layout>
@@ -95,7 +100,7 @@ const ProjectGrid = (props) => {
                                         </div>
                                         <div className="d-flex align-items-center mb-2">
                                             <i className="fa fa-credit-card me-3"></i>
-                                            <span className="pe-2">Esctimate Cost: {data.estimate_cost} RS</span>
+                                            <span className="pe-2">Estimate Cost: ₹ {data.estimate_cost} </span>
                                             {/* <a href="#">$2,742</a> */}
                                         </div>
                                         <div className="my-4">
@@ -128,7 +133,7 @@ const ProjectGrid = (props) => {
                                                     )
                                                 })} */}
                                             </div>
-                                            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#project_detail">View Detail</a>
+                                            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#project_detail" onClick={handleDetails}>View Detail</a>
                                         </div>
                                     </div>
                                 </div>

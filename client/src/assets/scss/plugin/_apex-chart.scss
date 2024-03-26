@@ -1,0 +1,42 @@
+// Admin Layout (BVITE)
+// @author:pixelwibes ( https://themeforest.net/user/pixelwibes )
+// @design by:pixelwibes.
+// @event-namespace: BVITE
+// Copyright 2023pixelwibes
+
+// apex chart line and text color
+.apexcharts-canvas{
+    line,
+    circle{
+		stroke: var(--bs-border-color);
+	}
+	text{
+		fill: var(--bs-gray-500);
+	}
+	.apexcharts-legend-text{
+		color: var(--bs-gray-500) !important;
+    }
+    .apexcharts-pie{
+        path{
+           stroke: var(--bs-border-color);
+        }
+    }
+    .apexcharts-legend-marker{
+        height: 3px !important;
+    }
+}
+.ac-line-transparent{
+    line{
+        stroke: var(--card-color);
+    }
+}
+.apexcharts-line-0{
+    line{
+        display: none;
+    }
+}
+.sparkline_chart{
+    canvas{
+        width: 100% !important;
+    }
+}

@@ -53,7 +53,8 @@ const PartnerAdminLogin = (props) => {
   }, [props.data.loginData]);
 
   return (
-    <div className="background-container">
+    // <div className="background-container">
+    <div style={{ background: "#ececec", height: "100%" }}>
       <Container
         component="main"
         maxWidth="xs"
@@ -62,13 +63,17 @@ const PartnerAdminLogin = (props) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: "80vh", // Center vertically
+          minHeight: "60vh", // Center vertically
+          background: "#f4f4f4",
+
         }}
       >
         <div>
           <Typography
             variant="h5"
-            style={{ textAlign: "center", fontSize: "30px", color: "white" }}
+            style={{ textAlign: "center", fontSize: "30px",
+            //  color: "white"
+           }}
           >
             Admin Login
           </Typography>
@@ -84,21 +89,22 @@ const PartnerAdminLogin = (props) => {
               InputProps={{
                 style: {
                   borderRadius: "10px", // Set the border radius
-                  color: "white",
+                  // color: "white",
                 },
-                notched: false, // Remove the notch border
+                // notched: false, // Remove the notch border
               }}
-              InputLabelProps={{
-                style: {
-                  color: "white", // Set the label color to white
-                },
-              }}
-              sx={{
-                "& fieldset": {
-                  borderColor: "white", // Set the border color to white
-                },
-              }}
+              // InputLabelProps={{
+              //   style: {
+              //     // color: "white", // Set the label color to white
+              //   },
+              // }}
+              // sx={{
+              //   "& fieldset": {
+              //     // borderColor: "white", // Set the border color to white
+              //   },
+              // }}
             />
+
             <TextField
               fullWidth
               label="Password"
@@ -110,13 +116,13 @@ const PartnerAdminLogin = (props) => {
               InputProps={{
                 style: {
                   borderRadius: "10px",
-                  color: "white", // Set the border radius
+                  // color: "white", // Set the border radius
                 },
-                notched: false, // Remove the notch border
+                // notched: false, // Remove the notch border
                 endAdornment: (
                   <Button
                     onClick={() => setShowPassword(!showPassword)}
-                    style={{ color: "white" }}
+                    // style={{ color: "white" }}
                   >
                     {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                   </Button>
@@ -124,12 +130,12 @@ const PartnerAdminLogin = (props) => {
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Set the label color to white
+                  // color: "white", // Set the label color to white
                 },
               }}
               sx={{
                 "& fieldset": {
-                  borderColor: "white", // Set the border color to white
+                  // borderColor: "white", // Set the border color to white
                 },
               }}
             />

@@ -8,6 +8,8 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { bindActionCreators } from "redux";
@@ -20,6 +22,7 @@ import {
 } from "../Redux/actions";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import './style.css';
 
 const drawerWidth = 240;
 
@@ -35,24 +38,39 @@ const Layout = ({ children, ...props }) => {
   };
 
   const iconStyles = {
-    // position: 'absolute',
-    // right: 0,
-    cursor: "pointer", // Add a pointer cursor for better UX
+    display: "flex",
+    cursor: "pointer",
     position: "absolute",
-    right: 30,
-    width: "40px",
-    height: "42",
+    left: "50px",
+    border: "1px solid #ccc", // Add border style
+    borderRadius: "15px", // Add border radius
+    paddingLeft: "6px",
+    paddingRight: "8px", // Add padding for better appearance
+    alignItems: "center", // Align items vertically in the flex container
+    color: "gray"
   };
-
+  const iconStylesssss = {
+    display: "flex",
+    cursor: "pointer",
+    position: "absolute",
+    right: "50px",
+    // border: "1px solid #ccc", // Add border style
+    // borderRadius: "15px", // Add border radius
+    // paddingLeft: "6px",
+    // paddingRight: "8px", // Add padding for better appearance
+    alignItems: "center", // Align items vertically in the flex container
+    color: "gray"
+  }
   const profileStyles = {
     display: showUserProfile ? "block" : "none",
     position: "absolute",
-    right: "10px", // Adjust the position as needed
+    // right: "10px", // Adjust the position as needed
     top: "40px", // Adjust the position as needed
     padding: "10px",
     border: "1px solid #ccc",
-    backgroundColor: "#fff",
+    backgroundColor: "#F0F4F7",
     zIndex: 1,
+    borderRadius: 8,
   };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -65,7 +83,7 @@ const Layout = ({ children, ...props }) => {
       if (loginData?.data?.status === "success") {
         setUser(loginData.data.data);
       } else {
-        console.log("hello");
+        // console.log("hello");
         // navigate('/')
       }
     }
@@ -86,13 +104,13 @@ const Layout = ({ children, ...props }) => {
     // console.log(loginData);
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
-        if (
-          loginData?.data?.data.role === "admin" ||
-          loginData?.data?.data.role === "editor" ||
-          loginData?.data?.data.role === "superadmin"
-        ) {
-          setUser(loginData.data.data);
-        }
+        // if (
+        //   loginData?.data?.data.role === "admin" ||
+        //   loginData?.data?.data.role === "editor" ||
+        //   loginData?.data?.data.role === "superadmin"
+        // ) {
+        setUser(loginData.data.data);
+        // }
       }
     }
   }, [props.data.loginData]);
@@ -103,13 +121,31 @@ const Layout = ({ children, ...props }) => {
     }
   }, [])
   // console.log(user);
+  // useEffect(() => {
+  //   if (
+  //     user.role === "admin" ||
+  //     user.role === "editor" ||
+  //     user.role === "superadmin"
+  //   ) {
+  //     props.requestAdminGetProfile({
+  //       id: user.id,
+  //     });
+  //   } else if (user.role === "agent") {
+  //     props.requestEmpGetCandidate({
+  //       id: user.id,
+  //     });
+  //   } else {
+  //     props.requestJobDetails({
+  //       id: user.id,
+  //     });
+  //   }
+  // }, [user]);
+
   useEffect(() => {
     if (
-      user.role === "admin" ||
-      user.role === "editor" ||
-      user.role === "superadmin"
+      user.role === "clerk"
     ) {
-      props.requestAdminGetProfile({
+      props.requestJobDetails({
         id: user.id,
       });
     } else if (user.role === "agent") {
@@ -117,7 +153,7 @@ const Layout = ({ children, ...props }) => {
         id: user.id,
       });
     } else {
-      props.requestJobDetails({
+      props.requestAdminGetProfile({
         id: user.id,
       });
     }
@@ -127,13 +163,13 @@ const Layout = ({ children, ...props }) => {
     let getProfileData = props.data.getProfileData;
     if (getProfileData !== undefined) {
       if (getProfileData?.data?.status == "success") {
-        if (
-          getProfileData?.data?.data.role === "admin" ||
-          getProfileData?.data?.data.role === "editor" ||
-          getProfileData?.data?.data.role === "superadmin"
-        ) {
-          setProfile(getProfileData.data.data);
-        }
+        // if (
+        //   getProfileData?.data?.data.role === "admin" ||
+        //   getProfileData?.data?.data.role === "editor" ||
+        //   getProfileData?.data?.data.role === "superadmin"
+        // ) {
+        setProfile(getProfileData.data.data);
+        // }
       }
     }
   }, [props.data.getProfileData]);
@@ -163,12 +199,12 @@ const Layout = ({ children, ...props }) => {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "#2c3e50",
+          backgroundColor: "#e6f3f8",
         }}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="black"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -179,7 +215,14 @@ const Layout = ({ children, ...props }) => {
           {/* <Typography variant="h6" noWrap component="div">
           Wainganga College of Engineering & Management, Nagpur
           </Typography> */}
-          <AccountCircleIcon style={iconStyles} onClick={handleToggleClick} />
+
+          <div style={iconStyles} onClick={handleToggleClick} className="feature-card">
+            <AccountCircleIcon style={{ height: "40px", width: "40px" }} />
+            <text>{profile?.name}<ArrowDropDownIcon /></text>
+          </div>
+          <div style={iconStylesssss} className="feature-card">
+            <NotificationsActiveIcon style={{ height: "30px", width: "30px" }} />
+          </div>
           {showUserProfile && (
             <div style={profileStyles}>
               {/* User information goes here */}
@@ -190,6 +233,7 @@ const Layout = ({ children, ...props }) => {
 
             </div>
           )}
+
         </Toolbar>
       </AppBar>
       <Box

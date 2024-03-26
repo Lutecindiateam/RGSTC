@@ -69,7 +69,7 @@ exports.admin_action = async (req, res) => {
   }
 };
 
-exports.create_partner_account = async (req, res) => {
+exports.registerApplicant = async (req, res) => {
   try {
     const existingEmailPartner = await partner
       .findOne({
@@ -84,45 +84,31 @@ exports.create_partner_account = async (req, res) => {
       name,
       phone,
       gender,
-      // address,
-      // pincode,
       email,
       password,
-      // role,
-      // active,
+      dob
     } = req.body;
-    // console.log(employee);
 
-    // console.log(password)
-
-    const _partner = new partner({
+    const applicant = new partner({
       name,
       phone,
       gender,
-      // address,
-      // pincode,
       email,
       password,
+      dob,
       role: "clerk",
-
-      // active,
     });
-    // console.log(password);
-    // console.log(_partner);
-    _partner.password = await bcrypt.hash(password, 10);
-    // _partner.selectedValue = employee;
-
-    // console.log("USER :: ",_user)
-    // console.log("_partner ::", _partner);
-    const savedPartner = await _partner.save();
-    if (savedPartner) {
+    
+    applicant.password = await bcrypt.hash(password, 10);
+   
+    const saveApplicant = await applicant.save();
+    if (saveApplicant) {
       return res.status(201).json({
         message: "User created successfully",
-        data: _partner,
+        data: applicant,
         status: "success",
       });
     }
-    // console.log(res);
   } catch (error) {
     return res.status(400).json({
       message: error,
@@ -160,7 +146,7 @@ exports.authenticate_partner = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
-                data: { id: user.id, token: token, role: user.role },
+                data: { id: user.id, token: token, role: user.role , name: user.name},
                 message: "Sign In success",
                 status: "success",
               });
@@ -253,7 +239,6 @@ exports.authenticate_agent = async (req, res) => {
       });
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ error: "Semething Went Wrong" });
   }
 };
@@ -306,16 +291,17 @@ exports.getAdminUsers = async (req, res) => {
 
 exports.editResetPass = async (req, res) => {
   try {
-    const { email, name, role, password } = req.body;
+    const { email, name, role, password ,permission} = req.body;
     const hash = await bcrypt.hash(password, 10);
-    const response = await agent.findOneAndUpdate(
+    const response = await partnerAdmin.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
           email: email,
           name: name,
           role: role,
-          password: hash
+          password: hash,
+          permission: permission
         },
       },
       { new: true }
@@ -333,3 +319,16 @@ exports.editResetPass = async (req, res) => {
     });
   }
 };
+exports.getInProgressProjects = async(req , res) => {
+  try {
+    const response = await upload.find({ applicant_id: req.params.id , status: { $ne : "true"}});
+    if (response.length > 0) {
+      return res.status(200).json({
+        data: { response },
+        status: "success",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Internal problem" });
+  }
+}

@@ -49,7 +49,7 @@ import {
   REQUEST_CATEGORY,
   receiveCategory,
   REQUEST_SEARCH_JOB,
-  receiveSearchJob,
+  receiveInProgress,
   //  REQUEST_EMP_FORGOT1, receiveEmpForgot1,
   //  REQUEST_EMP_FORGOT2, receiveEmpForgot2,
   //  REQUEST_EMP_FORGOT3, receiveEmpForgot3,
@@ -108,7 +108,7 @@ import {
   REQUEST_INTERVIEW_REJECT,
   receiveInterviewReject,
   REQUEST_INTERVIEW_CONFIRM,
-  receiveInterviewConfirm,
+  receivePreProposal,
   REQUEST_INTERVIEW_NOT_CONFIRM,
   receiveInterviewNotConfirm,
   REQUEST_DELETE,
@@ -174,7 +174,7 @@ import {
   REQUEST_ADMIN_EDIT_FUNCTIONAL,
   receiveAdminEditFunctional,
   REQUEST_ADMIN_FUNCTIONAL,
-  receiveAdminFunctional,
+  receiveCommitteePreproposal,
   REQUEST_ADMIN_ADD_INDUSTRY,
   receiveAdminAddIndustry,
   REQUEST_ADMIN_ALL_INDUSTRY,
@@ -184,7 +184,7 @@ import {
   REQUEST_ADMIN_EDIT_INDUSTRY,
   receiveAdminEditIndustry,
   REQUEST_ADMIN_INDUSTRY,
-  receiveAdminIndustry,
+  receiveProjectRequest,
   REQUEST_ADMIN_ADD_CATEGORY,
   receiveAdminAddCategory,
   REQUEST_ADMIN_ALL_CATEGORY,
@@ -200,7 +200,7 @@ import {
   REQUEST_ADMIN_ALL_TAG,
   receiveAdminAllTag,
   REQUEST_ADMIN_DELETE_TAG,
-  receiveAdminDeleteTag,
+  receivePreproposalApproval,
   REQUEST_ADMIN_EDIT_TAG,
   receiveAdminEditTag,
   REQUEST_ADMIN_TAG,
@@ -336,12 +336,12 @@ import {
   deleteDegree,
   addFunctional,
   getAllFunctional,
-  getFunctional,
+  getPreProposal,
   editFunctional,
   deleteFunctional,
   addIndustry,
   getAllIndustry,
-  getIndustry,
+  getProjectRequest,
   editIndustry,
   deleteIndustry,
   addCategory,
@@ -353,7 +353,7 @@ import {
   getAllTag,
   getTag,
   editTag,
-  deleteTag,
+  approvePreProposal,
   addShift,
   getAllShift,
   getShift,
@@ -429,7 +429,7 @@ import {
   approve,
   schedule,
   reject,
-  searchJob,
+  appliInProgress,
   readNotification,
   getJobs,
   getJobsCategoryWise,
@@ -453,7 +453,7 @@ import {
   recentlyJob,
   interviewApprove,
   interviewReject,
-  confirmInterview,
+  preProposalData,
   notconfirmInterview,
   empdeleteAccount,
   getComment
@@ -767,8 +767,8 @@ export function* deleteDegreeAdmin(action) {
 
 export function* functionalAdmin(action) {
   try {
-    const response = yield call(getFunctional, action.obj);
-    yield put(receiveAdminFunctional(response));
+    const response = yield call(getPreProposal, action.obj);
+    yield put(receiveCommitteePreproposal(response));
   } catch (e) {
     console.log(e.message);
   }
@@ -808,8 +808,8 @@ export function* deleteFunctionalAdmin(action) {
 
 export function* industryAdmin(action) {
   try {
-    const response = yield call(getIndustry, action.obj);
-    yield put(receiveAdminIndustry(response));
+    const response = yield call(getProjectRequest, action.obj);
+    yield put(receiveProjectRequest(response));
   } catch (e) {
     console.log(e.message);
   }
@@ -922,8 +922,8 @@ export function* editTagAdmin(action) {
 }
 export function* deleteTagAdmin(action) {
   try {
-    const response = yield call(deleteTag, action.obj);
-    yield put(receiveAdminDeleteTag(response));
+    const response = yield call(approvePreProposal, action.obj);
+    yield put(receivePreproposalApproval(response));
   } catch (e) {
     console.log(e.message);
   }
@@ -1320,9 +1320,9 @@ export function* checkBookmarkAppliedCandidate(action) {
 
 export function* confirmInterviewCandidate(action) {
   try {
-    const response = yield call(confirmInterview, action.obj);
+    const response = yield call(preProposalData, action.obj);
 
-    yield put(receiveInterviewConfirm(response));
+    yield put(receivePreProposal(response));
   } catch (e) {
     console.log(e.message);
   }
@@ -1547,9 +1547,9 @@ export function* getUserCandidate(action) {
 
 export function* searchJobCandidate(action) {
   try {
-    const response = yield call(searchJob, action.obj);
+    const response = yield call(appliInProgress, action.obj);
 
-    yield put(receiveSearchJob(response));
+    yield put(receiveInProgress(response));
   } catch (e) {
     console.log(e.message);
   }

@@ -29,9 +29,8 @@ const PartnerSignUp = (props) => {
   const [phone, setPhone] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
+  const [dob, setDob] = useState("");
   const [pincode, setPincode] = useState("");
-
   const [phoneNumberError, setPhoneNumberError] = useState("");
   const [gender, setGender] = React.useState("");
   const [erroremail, seterroremail] = useState("");
@@ -56,6 +55,13 @@ const PartnerSignUp = (props) => {
     }
   };
 
+  const handleNameChange = (e) => {
+    const input = e.target.value;
+    // Capitalize the first letter and convert the rest to lowercase
+    const capitalizedInput = input.replace(/\b\w/g, (char) => char.toUpperCase());
+    setName(capitalizedInput);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // props.userLogout();
@@ -68,8 +74,7 @@ const PartnerSignUp = (props) => {
       data: {
         name,
         phone,
-        // address,
-        // pincode,
+        dob,
         email,
         password,
         gender
@@ -95,29 +100,30 @@ const PartnerSignUp = (props) => {
   }, [props.candidate.registerData]);
 
   return (
-    <div className="background">
-      <Container component="main" maxWidth="xs">
-        <div>
-          <Typography variant="h5" style={{ color: "white", display: "flex", justifyContent: "center", paddingTop: "10%" }}>Registration</Typography>
+    // <div className="background">
+    <div style={{ background: "#ececec", height: "100%" }}>
+      <Container component="main" maxWidth="xs" style={{ background: "#f4f4f4" }}>
+        <div >
+          <Typography variant="h5" style={{ color: "gray", display: "flex", justifyContent: "center", paddingTop: "10%" }}>Applicant Registration</Typography>
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
               label=" Full Name"
               type="text"
               required
-              placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter Name"
+              onChange={handleNameChange}
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  // border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -125,10 +131,10 @@ const PartnerSignUp = (props) => {
               <FormControl fullWidth>
                 <InputLabel
                   id="demo-simple-select-label"
-                  style={{ color: "white" }}
+                  style={{ color: "black" }}
                   required
                 >
-                 Gender
+                  Select Gender
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -137,9 +143,9 @@ const PartnerSignUp = (props) => {
                   label=" Select Gender "
                   onChange={handleChange}
                   style={{
-                    border: "1px solid white",
+                    // border: "1px solid black",
                     borderRadius: "10px",
-                    color: "white",
+                    color: "black",
                   }}
                 >
                   <MenuItem value="male">Male</MenuItem>
@@ -147,25 +153,25 @@ const PartnerSignUp = (props) => {
                 </Select>
               </FormControl>
             </Box>
-            
+
             <TextField
               fullWidth
               label=" Phone Number"
               type="text"
               required
-              placeholder="Phone"
+              placeholder="Enter Phone Number"
               onChange={handlePhoneNumberChange}
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  // border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -177,54 +183,29 @@ const PartnerSignUp = (props) => {
                 {phoneNumberError}
               </Typography>
             )}
-
-            {/*      <TextField
-              fullWidth
-              label=" Address"
-              type="text"
-              required
-              placeholder="Address"
-              onChange={(e) => setAddress(e.target.value)}
-              margin="normal"
-              InputProps={{
-                style: {
-                  border: "1px solid white", // White border
-                  borderRadius: "10px", // Border radius
-                  color: "white", // Text color
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  color: "white", // Label color
-                },
-              }}
-            />
-*/}
-           
-
-
+            <Typography>Note*: OTP will be sent to this mobile number for verification</Typography>
             <TextField
               fullWidth
-              label=" Email address"
+              label=" Email Eddress"
               type="email"
               required
-              placeholder="Enter email"
+              placeholder="Enter Email"
               onChange={(e) => setEmail(e.target.value)}
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  // border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
-
+            <Typography>Note*: Email address will be used as username</Typography>
             <TextField
               fullWidth
               label="Password"
@@ -235,35 +216,57 @@ const PartnerSignUp = (props) => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  // border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
 
             <br />
+            <label style={{ color: "gray" }}>Date of Birth</label>
+            <TextField
+              fullWidth
+              // label=" Date of Birth"
+              type="date"
+              required
+              // placeholder="Date of Birth"
+              onChange={(e) => setDob(e.target.value)}
+              // margin="normal"
+              InputProps={{
+                style: {
+                  // border: "1px solid black", // black border
+                  borderRadius: "10px", // Border radius
+                  // color: "black", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "black", // Label color
+                },
+              }}
+            />
+
             <br />
 
-            
-
             <br />
 
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="primary" fullWidth style={{ borderRadius: "10px", height: "50px", fontSize: "17px" }}
+            >
               Sign Up
             </Button>
 
             <Typography
               align="right"
-              style={{ color: "white", fontSize: "16px" }}
+              style={{ color: "black", fontSize: "16px", paddingTop: "7px" }}
             >
               Already have an account?{" "}
-              <a href="/partnerlogin" style={{ color: "white" }}>
+              <a href="/partnerlogin" style={{ color: "black", fontSize: "18px" }}>
                 Log In
               </a>
             </Typography>

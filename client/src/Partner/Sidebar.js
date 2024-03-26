@@ -48,6 +48,8 @@ import {
   SettingOutlined,
   ShoppingOutlined,
   UnorderedListOutlined,
+  BorderBottomOutlined,
+  FolderAddOutlined,
   UsergroupAddOutlined,
   UserOutlined,
   UserSwitchOutlined,
@@ -55,248 +57,268 @@ import {
   CalendarOutlined,
   WechatOutlined,
   FilePdfOutlined,
-  EditOutlined
+  EditOutlined,
+  AlignCenterOutlined,
+  TagsOutlined,
+  PlusOutlined,
+  BorderlessTableOutlined,
+  PlusCircleOutlined
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
+
+
 const Sidebar = ({ handleDrawerToggle, ...props }) => {
   const [user, setUser] = useState({});
 
   const menu = [
     {
       label: (
-        <ListItemButton to="/dashboard" style={{ padding: 0 }}>
-          <ListItemText primary="Dashboard" style={{ color: "white", textDecoration: "none" }} />
-        </ListItemButton>
+        <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
+          <ListItemText primary="Dashboard" style={{ color: "gray", textDecoration: "none" }} />
+        </NavLink>
       ),
       key: "dashboard",
       icon: <HomeOutlined />,
     },
 
     {
-      label: <ListItemText primary="Project Management" style={{ color: "white" }} />,
+      label: <ListItemText primary="Project Management" style={{ color: "gray" }} />,
       key: "project",
       icon: <CodeSandboxOutlined />,
       children: [
+        user.role === "clerk" ? {
+          label: (
+            <NavLink to="/preproposal" style={{ textDecoration: "none" }}>
+              <ListItemText primary="Pre-Proposal" style={{ color: "gray", textDecoration: "none" }} />
+            </NavLink>
+          ),
+          key: "pre_praposal",
+          icon: <PlusCircleOutlined />,
+        } : null,
         user.role === "clerk" ?
           {
             label: (
-              <ListItemButton to="/upload">
-                <ListItemText primary="New Project" style={{ color: "white", textDecoration: "none" }} />
-              </ListItemButton>
+              <NavLink to="/upload" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Detailed Proposal" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
             ),
             key: "new_project",
-            icon: <UnorderedListOutlined />,
+            icon: <BorderlessTableOutlined />,
           } : null,
         {
           label: (
-            <ListItemButton to="/all-data">
-              <ListItemText primary="Project List" style={{ color: "white", textDecoration: "none" }} />
-            </ListItemButton>
+            <NavLink to="/all-data" style={{ textDecoration: "none" }}>
+              <ListItemText primary="Project List" style={{ color: "gray", textDecoration: "none" }} />
+            </NavLink>
           ),
           key: "project_list",
           icon: <UnorderedListOutlined />,
         },
-        {
-          label: (
-            <ListItemButton to="/projects">
-              <ListItemText primary="Project Grid" style={{ color: "white", textDecoration: "none" }} />
-            </ListItemButton>
-          ),
-          key: "productSubcategory",
-          icon: <UnorderedListOutlined />,
-        }
+        // {
+        //   label: (
+        //     <NavLink to="/projects" style={{ textDecoration: "none" }}>
+        //       <ListItemText primary="Project Grid" style={{ color: "gray", textDecoration: "none" }} />
+        //     </NavLink>
+        //   ),
+        //   key: "productSubcategory",
+        //   icon: <BorderBottomOutlined />,
+        // },
+        user.role === "superadmin" ?
+          {
+            label: (
+              <NavLink to="/project-request" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Project Request" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
+            ),
+            key: "productSubcategory",
+            icon: <FolderAddOutlined />,
+          } : null,
       ],
     },
+    user?.role && user?.permission?.includes("scheme management") ? (
+      {
+        label: (
+          <NavLink to="/flow" style={{ textDecoration: "none" }}>
+            <ListItemText primary="Scheme Management" style={{ color: "gray", textDecoration: "none" }} />
+          </NavLink>
+        ),
+        key: "committee",
+        icon: <EditOutlined />,
+      }
+    ) : null,
+    user?.role && user?.permission?.includes("preproposal approval") ? (
+      {
+        label: (
+          <NavLink to="/pre-display" style={{ textDecoration: "none" }}>
+            <ListItemText primary="Pre-Proposal" style={{ color: "gray", textDecoration: "none" }} />
+          </NavLink>
+        ),
+        key: "committee",
+        icon: <AlignCenterOutlined />,
+      }
+    ) : null
+    ,
     user.role === "superadmin" ?
       {
-        label: <ListItemText primary="User Management" style={{ color: "white" }} />,
+        label: <ListItemText primary="Admin Management" style={{ color: "gray" }} />,
         key: "user_mangement",
         icon: <ShoppingOutlined />,
         children: [
           {
             label: (
-              <ListItemButton to="/reset">
-                <ListItemText primary="Users" style={{ color: "white", textDecoration: "none" }} />
-              </ListItemButton>
+              <NavLink to="/reset" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Users" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
             ),
             key: "appli_manage",
             icon: <UserOutlined />,
           },
           {
             label: (
-              <ListItemButton to="/referee_manage">
-                <ListItemText primary="Referee" style={{ color: "white", textDecoration: "none" }} />
-              </ListItemButton>
-            ),
-            key: "referee",
-            icon: <CheckOutlined />,
-          },
-          {
-            label: (
-              <ListItemButton to="/committee_manage">
-                <ListItemText primary="Committee" style={{ color: "white", textDecoration: "none" }} />
-              </ListItemButton>
+              <NavLink to="/role" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Role" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
             ),
             key: "committee",
-            icon: <UnorderedListOutlined />,
+            icon: <TagsOutlined />,
           },
           {
             label: (
-              <ListItemButton to="/flow">
-                <ListItemText primary="Scheme Flow" style={{ color: "white", textDecoration: "none" }} />
-              </ListItemButton>
+              <NavLink to="/flow" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Scheme Management" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
+            ),
+            key: "committee",
+            icon: <EditOutlined />,
+          },
+          {
+            label: (
+              <NavLink to="/*" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Workflow Management" style={{ color: "gray", textDecoration: "none" }} />
+              </NavLink>
             ),
             key: "committee",
             icon: <EditOutlined />,
           },
         ],
       } : null,
+    // {
+    //   label: <ListItemText primary="Status" style={{ color: "gray" }} />,
+    //   key: "status",
+    //   icon: <MinusSquareOutlined />,
+    //   children: [
+    //     {
+    //       label: (
+    //         <NavLink to='/in-progress' style={{ textDecoration: "none" }}>
+    //           <ListItemText primary="In Progress" style={{ color: "gray", textDecoration: "none" }} />
+    //         </NavLink>
+    //       ),
+    //       key: "inprogress",
+    //       icon: <UserOutlined />,
+    //     },
+    //     {
+    //       label: (
+    //         <NavLink to='/succadm' style={{ textDecoration: "none" }}>
+    //           <ListItemText primary="Accepted" style={{ color: "gray", textDecoration: "none" }} />
+    //         </NavLink>
+    //       ),
+    //       key: "newSale",
+    //       icon: <CheckOutlined />,
+    //     },
+    //     {
+    //       label: (
+    //         <NavLink to='/rejection' style={{ textDecoration: "none" }}>
+    //           <ListItemText primary="Rejected" style={{ color: "gray", textDecoration: "none" }} />
+    //         </NavLink>
+    //       ),
+    //       key: "rejection",
+    //       icon: <CloseSquareOutlined />,
+    //     },
+    //   ],
+    // },
+    // user?.role === "superadmin" || user?.role && user?.permission?.filter((value) => value === "access calendar").length > 0 ? (
     {
-      label: <ListItemText primary="Status" style={{ color: "white" }} />,
-      key: "status",
-      icon: <MinusSquareOutlined />,
-      children: [
-        {
-          label: (
-            <NavLink to='/inprogress'>
-              <span>In Progress</span>
-            </NavLink>
-          ),
-          key: "inprogress",
-          icon: <UserOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/succadm'>
-              <span>Accepted</span>
-            </NavLink>
-          ),
-          key: "newSale",
-          icon: <CheckOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/rejection'>
-              <span>Rejected</span>
-            </NavLink>
-          ),
-          key: "rejection",
-          icon: <UnorderedListOutlined />,
-        },
-      ],
-    },
+      label: (
+        <NavLink to='/*' style={{ textDecoration: "none" }}>
+          <ListItemText primary="Fund Mangement" style={{ color: "gray", textDecoration: "none" }} />
+        </NavLink>
+      ),
+      key: "fund",
+      icon: <UnorderedListOutlined />,
+    }
+    // ) : null
+    ,
+    // user?.role === "superadmin" || user?.role && user?.permission?.filter((value) => value === "access calendar").length > 0 ? (
     {
-      label: <ListItemText primary="Accounts" style={{ color: "white" }} />,
-      key: "accounts",
-      icon: <WalletOutlined />,
-      children: [
-        {
-          label: (
-            <NavLink to='/account/'>
-              <span>Account</span>
-            </NavLink>
-          ),
-          key: "accountList",
-          icon: <UnorderedListOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/transaction/create'>
-              <span>New Transaction</span>
-            </NavLink>
-          ),
-          key: "newTransaction",
-          icon: <CheckOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/transaction/'>
-              <span>Transaction List</span>
-            </NavLink>
-          ),
-          key: "transactionList",
-          icon: <UnorderedListOutlined />,
-        },
-      ],
-    },
-    {
-      label: <ListItemText primary="Report" style={{ color: "white" }} />,
+      label: (
+        <NavLink to='/*' style={{ textDecoration: "none" }}>
+          <ListItemText primary="Report" style={{ color: "gray", textDecoration: "none" }} />
+        </NavLink>
+      ),
       key: "report",
-      icon: <FlagOutlined />,
-      children: [
-        {
-          label: (
-            <NavLink to='/account/trial-balance'>
-              <span>Trial Balance</span>
-            </NavLink>
-          ),
-          key: "trialBalance",
-          icon: <FileDoneOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/account/balance-sheet'>
-              <span>Balance Sheet</span>
-            </NavLink>
-          ),
-          key: "balanceSheet",
-          icon: <FileOutlined />,
-        },
-        {
-          label: (
-            <NavLink to='/account/income'>
-              <span>Income Statement</span>
-            </NavLink>
-          ),
-          key: "incomeStatement",
-          icon: <FileSyncOutlined />,
-        },
-      ],
-    },
+      icon: <FileDoneOutlined />,
+    }
+    // ) : null
+    ,
 
+    // console.log(user?.role === "superadmin" || user?.role && user?.permission?.filter((value) => value === "access calendar")),
+    user?.role === "superadmin" || user?.role === "clerk" || user?.role && user?.permission?.filter((value) => value === "access calendar").length > 0 ? (
+      {
+        label: (
+          <NavLink to='/calendar' style={{ textDecoration: "none" }}>
+            <ListItemText primary="My Calendar" style={{ color: "gray", textDecoration: "none" }} />
+          </NavLink>
+        ),
+        key: "calendar",
+        icon: <CalendarOutlined />,
+      }
+    ) : null
+    ,
+    user?.role === "superadmin" || user?.role === "clerk" || user?.role && user?.permission?.filter((value) => value === "access chat").length > 0 ? (
+      {
+        label: (
+          <NavLink to='/chat' style={{ textDecoration: "none" }}>
+            <ListItemText primary="Chat" style={{ color: "gray", textDecoration: "none" }} />
+          </NavLink>
+        ),
+        key: "chat",
+        icon: <WechatOutlined />,
+      }
+    ) : null
+    ,
+    user?.role === "superadmin" || user?.role === "clerk" || user?.role && user?.permission?.filter((value) => value === "access fileManager").length > 0 ? (
+
+      {
+        label: (
+          <NavLink to='/file' style={{ textDecoration: "none" }}>
+            <ListItemText primary="Document" style={{ color: "gray", textDecoration: "none" }} />
+          </NavLink>
+        ),
+        key: "document",
+        icon: <FilePdfOutlined />,
+      }
+    ) : null
+    ,
     {
       label: (
-        <ListItemButton to="/calendar" style={{ padding: 0 }}>
-          <ListItemText primary="My Calendar" style={{ color: "white", textDecoration: "none" }} />
-        </ListItemButton>
+        <NavLink to='/*' style={{ textDecoration: "none" }}>
+          <ListItemText primary="Settings" style={{ color: "gray", textDecoration: "none" }} />
+        </NavLink>
       ),
-      key: "calendar",
-      icon: <CalendarOutlined />,
-    },
-    {
-      label: (
-        <ListItemButton to="/chat" style={{ padding: 0 }}>
-          <ListItemText primary="Chat" style={{ color: "white", textDecoration: "none" }} />
-        </ListItemButton>
-      ),
-      key: "chat",
-      icon: <WechatOutlined />,
-    },
-    {
-      label: (
-        <ListItemButton to="/file" style={{ padding: 0 }}>
-          <ListItemText primary="File Manager" style={{ color: "white", textDecoration: "none" }} />
-        </ListItemButton>
-      ),
-      key: "dashboard",
-      icon: <FilePdfOutlined />,
-    },
-    {
-      label: <ListItemText primary="Setting" style={{ color: "white" }} />,
       key: "settings",
       icon: <SettingOutlined />,
-      children: [
-        {
-          label: (
-            <NavLink to='/invoice-setting'>
-              <span>Invoice Settings</span>
-            </NavLink>
-          ),
-          key: "invoiceSetting",
-          icon: <SettingOutlined />,
-        },
-      ],
+      // children: [
+      //   {
+      //     label: (
+      //       <NavLink to='/invoice-setting'>
+      //         <span>Invoice Settings</span>
+      //       </NavLink>
+      //     ),
+      //     key: "invoiceSetting",
+      //     icon: <SettingOutlined />,
+      //   },
+      // ],
     },
   ];
 
@@ -343,7 +365,7 @@ const Sidebar = ({ handleDrawerToggle, ...props }) => {
 
     <div
       style={{
-        backgroundColor: "#2c3e50",
+        backgroundColor: "#e6f3f8",
         height: "100vh",
         paddingTop: "20px",
 
@@ -359,7 +381,7 @@ const Sidebar = ({ handleDrawerToggle, ...props }) => {
         <img src={ob} alt="ob" style={{ height: "80%", width: "70px" }} />
         <strong
           style={{
-            color: "gold",
+            color: "gray",
             fontWeight: "bold",
             fontSize: "25px",
             paddingLeft: "10px",
@@ -369,15 +391,6 @@ const Sidebar = ({ handleDrawerToggle, ...props }) => {
           R.G.S.T.C
           {/* W.B.I.C. */}
         </strong>
-        {/* <strong style={{ color: "gold", fontWeight: "bold", fontSize: "20px" }}>
-          Wain
-        </strong> */}
-        {/* &nbsp;
-        <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
-        &nbsp; */}
-        {/* <strong style={{ color: "gold	", fontWeight: "bold", fontSize: "20px" }}>
-          Ganga
-        </strong> */}
       </div>
       <Divider />
       <br />
@@ -518,7 +531,7 @@ const Sidebar = ({ handleDrawerToggle, ...props }) => {
         // className='sidenav-menu'
         // className={styles["sidenav-menu"]}
         // openKeys={[sideNavOpenKeys]}
-        style={{ backgroundColor: "#2c3e50", color: "white" }}
+        style={{ backgroundColor: "#e6f3f8", color: "gray" }}
       />
       {/* </div> */}
       <Divider />

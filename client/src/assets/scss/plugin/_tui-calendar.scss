@@ -1,0 +1,18 @@
+// Admin Layout (BVITE)
+// @author:pixelwibes ( https://themeforest.net/user/pixelwibes )
+// @design by:pixelwibes.
+// @event-namespace: BVITE
+// Copyright 2023pixelwibes
+
+
+.tui-calendar{
+    .lnb-calendars-item{
+        margin-right: 10px;
+    }
+    .tui-full-calendar-layout{
+        background-color: transparent !important;
+    }
+    input[type=checkbox].tui-full-calendar-checkbox-round+span{
+        border-radius: 2px;
+    }
+}

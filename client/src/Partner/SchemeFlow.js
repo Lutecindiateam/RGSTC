@@ -40,6 +40,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Amt_Table from "./AmountTable";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
 // import { Input } from "@material-ui/core";
 
 import InputLabel from '@mui/material/InputLabel';
@@ -227,7 +229,7 @@ const DetailsModal = ({
                     </div>
                 ))}
                 <br />
-                {value &&
+                {/* {value &&
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Select Referee</InputLabel>
                         <Select
@@ -242,7 +244,7 @@ const DetailsModal = ({
                             <MenuItem value={'Stage3'}>Stage3</MenuItem>
                         </Select>
                     </FormControl>
-                }
+                } */}
                 <br />
                 <br />
                 <Button variant="contained" onClick={handleSubmit}>
@@ -250,8 +252,8 @@ const DetailsModal = ({
                 </Button>
                 <br />
                 <br />
-                {data?.committee?.map((committee, index) => (
-                    <div key={index}> {/* Make sure to add a unique key to each element */}
+                {/* {data?.committee?.map((committee, index) => (
+                    <div key={index}> 
                         <label htmlFor={`committee-${index}`}>{`committee ${index + 1} Name:`}</label>
                         <Input
                             label="NA"
@@ -261,166 +263,7 @@ const DetailsModal = ({
                             placeholder={`NA`}
                         />
                     </div>
-                ))}
-
-
-                {/* {user.role === "editor" && user.value === true
-          ? (
-            <>
-              <div>
-                <Typography variant="h5" component="h2" style={{ display: "flex", justifyContent: "center" }}>
-                  Add Incentive
-                </Typography>
-                <div>
-                  <label htmlFor="source">Advance Payable Amount:</label>
-                  <Input
-                    label="NA"
-                    id="adv_payble_amt"
-                    name="adv_payble_amt"
-                    value={data.adv_payble_amt}
-                    placeholder="Enter Advance Payable Amountt"
-                  // onChange={onChangeData}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="source">Paid Amount:</label>
-                  <Input
-                    label="NA"
-                    type="number"
-                    id="paid_amount"
-                    name="paid_amount"
-                    value={data.paid_amount}
-                    placeholder="Enter Paid Amount"
-                    onChange={user.role === "editor" ? onChangeData : undefined}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="source">Cheque Number:</label>
-                  <Input
-                    label="NA"
-                    id="cheque_no"
-                    name="cheque_no"
-                    value={data?.cheque_no?.toUpperCase() || ''}
-                    placeholder="Enter Cheque Number"
-                    onChange={user.role === "editor" ? onChangeData : undefined}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="source">Cheque Date:</label>
-                  <Input
-                    label="NA"
-                    type="date"
-                    id="cheque_date"
-                    name="cheque_date"
-                    value={data.cheque_date}
-                    placeholder="Enter Cheque Date"
-                    onChange={user.role === "editor" ? onChangeData : undefined}
-                  />
-                </div>
-                
-                <br />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Button
-                    variant="contained"
-                    onClick={submitProductForm}
-                    disabled={isSubmitDisabled}
-
-                  >
-                    Save Incentive
-                  </Button>
-                </div>
-              </div>
-              <br />
-            </>
-          ) : null}
-        {user.role === 'editor' && user.value === false && (
-          <div>
-            <br />
-            <br />
-            <Typography variant="h5" component="h2" style={{ display: 'flex', justifyContent: 'center' }}>
-              Add Stage
-            </Typography>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Select Stage</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={stage}
-                label="Stage"
-                onChange={handleChange}
-              >
-                <MenuItem value={'Stage1'}>Stage1</MenuItem>
-                <MenuItem value={'Stage2'}>Stage2</MenuItem>
-                <MenuItem value={'Stage3'}>Stage3</MenuItem>
-              </Select>
-            </FormControl>
-            {stage === 'Stage2' && (
-              <div>
-                <br />
-                <br />
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={document} onChange={handleCheckboxChange} name="document" />}
-                  label="All Documents"
-                />
-                <br />
-                <br />
-                <Typography>Document deficiency on allotment letter</Typography>
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={documentDeficiency} onChange={handleCheckboxChange} name="documentDeficiency" />}
-                  label="No"
-                />
-              </div>
-            )}
-            {stage === 'Stage3' && (
-              <div>
-                <br />
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={scholarship} onChange={handleCheckboxChange} name="scholarship" />}
-                  label="Scholarship"
-                />
-                <br />
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={examForm} onChange={handleCheckboxChange} name="examForm" />}
-                  label="Exam Form"
-                />
-                <br />
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={exam} onChange={handleCheckboxChange} name="exam" />}
-                  label="Exam"
-                />
-                <br />
-                <FormControlLabel
-                  required
-                  control={<Checkbox checked={attendance} onChange={handleCheckboxChange} name="attendance" />}
-                  label="Attendance"
-                />
-              </div>
-            )}
-            <Button variant="contained" onClick={handleSubmit} disabled={!stage}>
-              Submit
-            </Button>
-          </div>
-        )} */}
-
-                {/* <br />
-        {user.role === "editor" || user.role === "admin" || user.role === "superadmin" ? (
-          <div>
-            <h6>*Current Balance :  ₹ {balance_money || balance_money === 0 ? (balance_money) : (data.adv_payble_amt)} /-</h6>
-          </div>
-        ) : (null)
-        }
-        {user.role === "editor" || user.role === "admin" || user.role === "superadmin" || user.role === "agent" ? (
-          <div>
-            <br />
-            <Amt_Table id={id} />
-          </div>
-        ) : (null)
-        } */}
+                ))} */}
             </Box>
         </Modal>
     );
@@ -979,7 +822,9 @@ const SchemFlow = (props) => {
                 flex: 1,
                 renderCell: (params) => (
                     <Button onClick={() => handleOpen(params.row.more)}>
-                        More Details..
+                        <div style={{ background: "blue", color: "white", height: "30px", width: "40px", borderRadius: "5px" }}>
+                            <RemoveRedEyeIcon />
+                        </div>
                     </Button>
                 ),
             },

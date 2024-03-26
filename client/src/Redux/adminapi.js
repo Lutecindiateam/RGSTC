@@ -116,7 +116,7 @@ export const editDegree = (obj) => {
 
 export const editFunctional = (obj) => {
   return axios
-    .patch("/admin/forAdminEdit/" + obj.id, obj.data)
+    .patch("/admin/forAdminEdit/" + obj.id, obj)
     .then((response) => {
       return response;
     })
@@ -378,6 +378,103 @@ export const deleteCareer = (obj) => {
     });
 };
 
+export const addIndustry = (obj) => {
+  console.log(obj.data);
+  return axios
+    .post("/admin/addrole", obj)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+export const getDegree = (obj) => {
+  return axios
+    .get("/admin/getrole")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const editPosition = (obj) => {
+  return axios
+    .patch("/admin/editPartiCularRole/" + obj.id, obj)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const deleteSize = (obj) => {
+  return axios
+    .delete("/admin/deleteRole/" + obj.id)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const editContact = (obj) => {
+  return axios
+    .patch("/reset/" + obj.id, obj.data, {
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const getProjectRequest = (obj) => {
+  return axios
+    .get("/admin/getRequest")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const getPreProposal = (obj) => {
+  return axios
+    .get("/committee/preproposal")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const approvePreProposal = (obj) => {
+  return axios
+    .patch("/committee/approve/" + obj.id, obj)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
 //*************END*********//
 
 export const adminforgot1 = (obj) => {
@@ -606,19 +703,6 @@ export const addSize = (obj) => {
 };
 
 
-
-export const deleteSize = (obj) => {
-  return axios
-    .delete("/admin/CompanySize/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
-
 export const getAllDegree = (obj) => {
   return axios
     .get(
@@ -632,22 +716,6 @@ export const getAllDegree = (obj) => {
       return err.response;
     });
 };
-
-export const getDegree = (obj) => {
-  return axios
-    .get("/admin/editDegreeLevel/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
-
-
-
-
 
 export const deleteDegree = (obj) => {
   return axios
@@ -678,19 +746,6 @@ export const getAllFunctional = (obj) => {
     });
 };
 
-export const getFunctional = (obj) => {
-  return axios
-    .get("/admin/editFunctionalArea/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
-
-
 
 
 
@@ -718,29 +773,8 @@ export const getAllIndustry = (obj) => {
     });
 };
 
-export const getIndustry = (obj) => {
-  return axios
-    .get("/admin/editIndustry/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
-export const addIndustry = (obj) => {
-  return axios
-    .post("/admin/addIndustry", obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 
 
@@ -848,17 +882,7 @@ export const addTag = (obj) => {
 
 
 
-export const deleteTag = (obj) => {
-  return axios
-    .patch("/admin/block_company/" + obj.id, obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const getAllShift = (obj) => {
   return axios
@@ -1221,17 +1245,7 @@ export const addPosition = (obj) => {
 };
 
 //running
-export const editPosition = (obj) => {
-  return axios
-    .patch("/admin/editPartiCularPosition/" + obj.id, obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const deletePosition = (obj) => {
   return axios
@@ -1271,17 +1285,7 @@ export const getContact = (obj) => {
     });
 };
 
-export const editContact = (obj) => {
-  return axios
-    .patch("/editPartiCularcontact/" + obj.id, obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const getAllCount = (obj) => {
   return axios

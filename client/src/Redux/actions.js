@@ -211,8 +211,8 @@ export const receiveAdminDeleteDegree = (data) => ({ type: RECEIVE_ADMIN_DELETE_
 
 export const REQUEST_ADMIN_FUNCTIONAL = "REQUEST_ADMIN_FUNCTIONAL";
 export const RECEIVE_ADMIN_FUNCTIONAL = "RECEIVE_ADMIN_FUNCTIONAL";
-export const requestAdminFunctional = (obj) => ({ type: REQUEST_ADMIN_FUNCTIONAL, obj });
-export const receiveAdminFunctional = (data) => ({ type: RECEIVE_ADMIN_FUNCTIONAL, data });
+export const requestCommitteePreproposal = (obj) => ({ type: REQUEST_ADMIN_FUNCTIONAL, obj });
+export const receiveCommitteePreproposal = (data) => ({ type: RECEIVE_ADMIN_FUNCTIONAL, data });
 
 export const REQUEST_ADMIN_ALL_FUNCTIONAL = "REQUEST_ADMIN_ALL_FUNCTIONAL";
 export const RECEIVE_ADMIN_ALL_FUNCTIONAL = "RECEIVE_ADMIN_ALL_FUNCTIONAL";
@@ -238,8 +238,8 @@ export const receiveAdminDeleteFunctional = (data) => ({ type: RECEIVE_ADMIN_DEL
 
 export const REQUEST_ADMIN_INDUSTRY = "REQUEST_ADMIN_INDUSTRY";
 export const RECEIVE_ADMIN_INDUSTRY = "RECEIVE_ADMIN_INDUSTRY";
-export const requestAdminIndustry = (obj) => ({ type: REQUEST_ADMIN_INDUSTRY, obj });
-export const receiveAdminIndustry = (data) => ({ type: RECEIVE_ADMIN_INDUSTRY, data });
+export const requestProjectRequest = (obj) => ({ type: REQUEST_ADMIN_INDUSTRY, obj });
+export const receiveProjectRequest = (data) => ({ type: RECEIVE_ADMIN_INDUSTRY, data });
 
 export const REQUEST_ADMIN_ALL_INDUSTRY = "REQUEST_ADMIN_ALL_INDUSTRY";
 export const RECEIVE_ADMIN_ALL_INDUSTRY = "RECEIVE_ADMIN_ALL_INDUSTRY";
@@ -312,8 +312,8 @@ export const receiveAdminEditTag = (data) => ({ type: RECEIVE_ADMIN_EDIT_TAG, da
 
 export const REQUEST_ADMIN_DELETE_TAG = "REQUEST_ADMIN_DELETE_TAG";
 export const RECEIVE_ADMIN_DELETE_TAG = "RECEIVE_ADMIN_DELETE_TAG";
-export const requestAdminDeleteTag = (obj) => ({ type: REQUEST_ADMIN_DELETE_TAG, obj });
-export const receiveAdminDeleteTag = (data) => ({ type: RECEIVE_ADMIN_DELETE_TAG, data });
+export const requestPreproposalApproval = (obj) => ({ type: REQUEST_ADMIN_DELETE_TAG, obj });
+export const receivePreproposalApproval = (data) => ({ type: RECEIVE_ADMIN_DELETE_TAG, data });
 
 //shift
 
@@ -789,8 +789,8 @@ export const receiveRescheduleInterview = (data) => ({ type: RECEIVE_RESCHEDULE_
 //interview confirm
 export const REQUEST_INTERVIEW_CONFIRM = "REQUEST_INTERVIEW_CONFIRM";
 export const RECEIVE_INTERVIEW_CONFIRM = "RECEIVE_INTERVIEW_CONFIRM";
-export const requestInterviewConfirm = (obj) => ({ type: REQUEST_INTERVIEW_CONFIRM, obj });
-export const receiveInterviewConfirm = (data) => ({ type: RECEIVE_INTERVIEW_CONFIRM, data });
+export const requestPreProposal = (obj) => ({ type: REQUEST_INTERVIEW_CONFIRM, obj });
+export const receivePreProposal = (data) => ({ type: RECEIVE_INTERVIEW_CONFIRM, data });
 
 //interview not confirm
 export const REQUEST_INTERVIEW_NOT_CONFIRM = "REQUEST_INTERVIEW_NOT_CONFIRM";
@@ -837,8 +837,8 @@ export const receiveEmpChangePassword = (data) => ({ type: RECEIVE_EMP_CHANGE_PA
 //search job 
 export const REQUEST_SEARCH_JOB = "REQUEST_SEARCH_JOB";
 export const RECEIVE_SEARCH_JOB = "RECEIVE_SEARCH_JOB";
-export const requestSearchJob = (obj) => ({ type: REQUEST_SEARCH_JOB, obj });
-export const receiveSearchJob = (data) => ({ type: RECEIVE_SEARCH_JOB, data });
+export const requestInProgress = (obj) => ({ type: REQUEST_SEARCH_JOB, obj });
+export const receiveInProgress = (data) => ({ type: RECEIVE_SEARCH_JOB, data });
 
 //category
 export const REQUEST_CATEGORY = "REQUEST_CATEGORY";

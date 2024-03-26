@@ -31,12 +31,13 @@ exports.partnerAdminLogin = async (req, res) => {
       // console.log("EMAIL :: ", user)
       if (!user) {
         return res.status(400).json({ error: "Invalid email or password" });
-      } else if (user.active == "pending") {
-        return res.status(400).json({
-          error:
-            "Your request is currently pending. Please contact our support team.",
-        });
       }
+      // else if (user.active == "pending") {
+      //   return res.status(400).json({
+      //     error:
+      //       "Your request is currently pending. Please contact our support team.",
+      //   });
+      // }
 
       bcrypt.compare(password, user.password, function (error, isMatch) {
         // console.log("MATCH :: ", isMatch)
@@ -51,14 +52,13 @@ exports.partnerAdminLogin = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
-                data: { id: user.id, token: token, role: user.role, value: user.value, name: user.name },
+                data: { id: user.id, token: token, role: user.role, value: user.value, name: user.name, permission: user.permission },
                 message: "Sign In success",
                 status: "success",
               });
             }
           );
         } else {
-          console.error(error);
           return res.status(400).json({ error: "Invalid password" });
         }
       });
@@ -184,7 +184,7 @@ exports.editEditorStatus = async (req, res) => {
       { _id: req.params.id },
       {
         $set: {
-          status: "editor",
+          status: "committee",
           referee_remark: req.body.remark
         },
       },
@@ -211,7 +211,8 @@ exports.editForAdminStatus = async (req, res) => {
       { _id: req.params.id },
       {
         $set: {
-          status: "admin"
+          status: "true",
+          committee_remark: req.body.remark
         },
       },
       { new: true }
@@ -532,5 +533,19 @@ exports.getBranchWiseData = async (req, res) => {
       status: 'error',
       message: 'Internal server error'
     });
+  }
+}
+
+exports.getProjectRequest = async (req, res) => {
+  try {
+    const response = await upload.find({ status: "false" }).sort({ createdAt: -1 });
+    if (response.length > 0) {
+      return res.status(200).json({
+        data: { response },
+        status: "success",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Internal problem" });
   }
 }

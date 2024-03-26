@@ -1,0 +1,24 @@
+// Admin Layout (BVITE)
+// @author:pixelwibes ( https://themeforest.net/user/pixelwibes )
+// @design by:pixelwibes.
+// @event-namespace: BVITE
+// Copyright 2023pixelwibes
+
+.brand{
+    position: relative;
+
+    .brand-icon{
+        color: var(--primary-color);
+    }
+    .nav-tabs{
+        position: absolute;
+        bottom: 10px;
+        > li{
+            display: none;
+
+            &:first-child{
+                display: flex;
+            }
+        }
+    }
+}
